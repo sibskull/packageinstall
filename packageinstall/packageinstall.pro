@@ -1,8 +1,12 @@
 
 include(config.pri)
 
-SOURCES += main.cpp dialog.cpp
-SRCMOC += dialog.moc
+SOURCES += main.cpp \
+           dialog.cpp \
+           aptcommit.cpp
+
+HEADERS += dialog.h \
+		   aptcommit.h
 
 TEMPLATE = app
 

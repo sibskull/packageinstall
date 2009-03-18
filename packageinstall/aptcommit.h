@@ -16,46 +16,40 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef DIALOG_H
-#define DIALOG_H
+#ifndef APTCOMMIT_H
+#define APTCOMMIT_H
 
-#include <QtGui>
-#include <QProcess>
-#include "aptcommit.h"
+#include <QtCore>
 
-#define APPNAME		"packageinstall"
-#define APPVERSION	"1.0"
-#define ICON		"rpm-package.png"
-
-class AptCommit;
-void setStatus( QString stage, int percent, QString fileName );
-int showDialog( QString title, QString text, QString details );
-void processWrite( QString str );
-
-class Dialog : public QDialog
+class AptCommit : public QObject
 {
 
     Q_OBJECT
 
+	enum Type { Unknown, Upgraded, Installed, Removed, Kept, Preparing, Progress };
+
 public:
-    Dialog( QStringList *p, QWidget *parent = 0, Qt::WFlags flags = 0 );
-    ~Dialog();
-	void start();
-	void iSetStatus( QString stage, int percent, QString fileName );
-    QProcess *process;
-    
+    AptCommit();
+	int appendString( QString str );
+	int appendError( QString str );
+    QStringList *packages;
+	
 private:
-	QStringList *packages;
-	QLabel *status;
-	QProgressBar *progress;
-	QLabel *file;
-	AptCommit commit;
-
-private slots:
-	void on_processStart();
-	void on_readOutput();
-	void on_readError();
-
+	QStringList output;
+	QStringList errors;
+	
+	// Package lists
+	QStringList installed;
+	QStringList upgraded;
+	QStringList removed;
+	QStringList kept;
+	
+	// Status
+	Type stage;
+	int count;
+	int total;
+	QString currentFile;
+	int totalPackages;
 };
 
-#endif // DIALOG_H
+#endif // APTCOMMIT_H

@@ -22,11 +22,16 @@
 #include <iostream>
 #include "dialog.h"
 
+static Dialog *dlg;
+
 Dialog::Dialog( QStringList *p, QWidget *parent, Qt::WFlags flags )
         : QDialog( parent, flags )
 {
 	// Save package list
 	packages = p;
+
+	// Make dialog available system wide
+	dlg = this;
 
 	// Forbid maximized
 	//setWindowState(  Qt::WindowMinimized | Qt::WindowActive );
@@ -47,7 +52,9 @@ Dialog::Dialog( QStringList *p, QWidget *parent, Qt::WFlags flags )
 	icon->setSizePolicy( QSizePolicy( QSizePolicy::Minimum, QSizePolicy::Minimum ) );
 	icon->setPixmap( QString( DATADIR ) + QString( ICON ) );
 	
-	QLabel *message = new QLabel( tr("<b>Installing packages</b><br>Please, wait...") );
+	QLabel *message = new QLabel( ( packages->count() == 0 ? 
+		tr("<b>Updating system</b><br>Please, wait...") : 
+		tr("<b>Installing packages</b><br>Please, wait...") ) );
 	message->setWordWrap( true );
 	message->setAlignment( Qt::AlignVCenter | Qt::AlignLeft );
 	message->setSizePolicy( QSizePolicy( QSizePolicy::Expanding, QSizePolicy::Minimum ) );
@@ -57,11 +64,12 @@ Dialog::Dialog( QStringList *p, QWidget *parent, Qt::WFlags flags )
 
 	status   = new QLabel( "" );
 	progress = new QProgressBar();
+	progress->setTextVisible( true );
+	progress->setMinimum( 0 );
+	progress->setMaximum( 100 );
+	progress->setValue( 0 );
 	file     = new QLabel( "" );
 
-	QPushButton *install = new QPushButton( tr( "I&nstall" ) );
-	install->setAutoDefault( true );
-	install->setWhatsThis( tr( "Install RPM packages" ) );
 	QPushButton *cancel  = new QPushButton( tr( "&Cancel" ) );
 	cancel->setWhatsThis( tr( "Quit from application" ) );
 
@@ -127,14 +135,20 @@ void Dialog::on_processStart() {
 		return;
 	}
 
-   QStringList args;
+	QStringList args;
+   
+	// Test install
+	args << "-f";
+	
+	commit.packages = packages;
+		
 	if( packages->count() == 0 ) {
 		// On empty list of packages update all system
 		args << "dist-upgrade";
 	} else {
 		// Copy packages
 		args << "install";
-		for (int i = 1; i < packages->size(); ++i) {
+		for (int i = 0; i < packages->size(); ++i) {
 			args << packages->at(i);
 		}
 	}
@@ -143,9 +157,12 @@ void Dialog::on_processStart() {
 	process->start( "apt-get", args );
 
 	if ( ! process->waitForStarted() ) {
-        QMessageBox::critical(this, tr("Error start"), tr("Could not start apt-get") );
+        QMessageBox::critical(this, tr("Error start"), tr("Could not start 'apt-get'. Install this program.") );
         exit( 1 );
     }
+	
+	// Inform about first stage
+	setStatus( tr("Check package requirements..."), 0, "" );
 	
 }
 
@@ -157,14 +174,14 @@ void Dialog::on_readOutput() {
 
 	process->setReadChannel( QProcess::StandardOutput );
 	
-	//while( process->readyRead() ) {
-		QByteArray bytes = process->readAll();
-		QStringList lines = QString( bytes ).split( "\n" );
-		foreach( QString line, lines ) {
-			if( ! line.isEmpty() )
-				printf( "%s\n", qPrintable( line ) ); 
-		}
-	//}
+	QByteArray bytes = process->readAll();
+	QStringList lines = QString( bytes ).split( "\n" );
+	foreach( QString line, lines ) {
+		//if( ! line.isEmpty() ) {
+			commit.appendString( line );
+		//}
+	}
+
 }
 
 
@@ -172,14 +189,69 @@ void Dialog::on_readOutput() {
 void Dialog::on_readError() {
 	
 	QByteArray buf;
+	QString str;
 	
 	process->setReadChannel( QProcess::StandardError );
 	
 	while( process->canReadLine() ) {
 		buf = process->readLine();
-		printf( "> %s", buf.data() );
+		str = QString( buf.data() );
+		commit.appendError( str );
+		if( ! str.isEmpty() ) {
+			//QMessageBox::critical( this, tr("Unsufficient privileges"), 
+			//	tr("Program should be run with superuser privileges.\nCheck your rights and program installation.") );
+			//close();
+			printf( "Error: %s", qPrintable( str ) );
+		}
 	}
 }
 
 
-#include "dialog.moc"
+// Set status information
+void Dialog::iSetStatus( QString stage, int percent, QString fileName ) {
+	status->setText( stage );
+	progress->setValue( percent );
+	file->setText( fileName );
+}
+
+
+// Set status information (static function)
+void setStatus( QString stage, int percent, QString fileName ) {
+	if( dlg )
+		dlg->iSetStatus( stage, percent, fileName );
+}
+
+
+// Show statistics
+int showDialog( QString title, QString text, QString details ) {
+			
+	if( dlg ) {
+		QMessageBox msgBox;
+		
+		msgBox.setWindowTitle( title );
+		msgBox.setText( text );
+		if( ! details.isEmpty() ) {
+			msgBox.setDetailedText( details );
+			msgBox.setStandardButtons( QMessageBox::Ok | QMessageBox::Cancel );
+		} else {
+			msgBox.setStandardButtons( QMessageBox::Ok );
+		}
+		msgBox.setDefaultButton( QMessageBox::Ok );
+		
+		int ret = msgBox.exec();
+		if( ret == QMessageBox::Cancel ) {
+			dlg->close();
+		}
+		return ret;
+	}
+	return 0;
+}
+
+
+// Write to process
+void processWrite( QString str ) {
+	if( dlg ) {
+		dlg->process->write( QByteArray( qPrintable(str) ) );
+		dlg->process->closeWriteChannel();
+	}
+}
