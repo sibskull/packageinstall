@@ -178,8 +178,9 @@ void Dialog::on_processStart() {
 
 // On finish process
 void Dialog::on_processStop() {
-	if( cancel )
+	if( cancel ) {
 		cancel->setText( tr("&Exit") );
+	}
 }
 
 // Read from process output

@@ -73,7 +73,8 @@ int AptCommit::appendString( QString str ) {
 	}
 
 	// Prepare to install
-	if( str.startsWith( "Do you want to continue? [Y/n]" ) ) {
+	//if( str.startsWith( "Do you want to continue? [Y/n]" ) ) {
+	if( str.endsWith( "not upgraded." ) ) {
 		QString statistics = tr("There are %1 upgraded, %2 installed,\n%3 removed, %4 kept packages.\nDo you want to install this packages?").arg( 
 				upgraded.count() ).arg(
 				installed.count() ).arg(
