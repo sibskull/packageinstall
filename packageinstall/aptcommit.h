@@ -43,6 +43,7 @@ private:
 	QStringList upgraded;
 	QStringList removed;
 	QStringList kept;
+	QStringList all;
 	
 	// Status
 	Type stage;

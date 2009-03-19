@@ -30,6 +30,7 @@ AptCommit::AptCommit()
 	upgraded.clear();
 	removed.clear();
 	kept.clear();
+	all.clear();
 }
 
 
@@ -41,7 +42,7 @@ int AptCommit::appendString( QString str ) {
 	
 	// Test output
 	//if( stage == Preparing ) {
-	//	printf( "%s\n", qPrintable( str ) );
+	//	qDebug() << str;
 	//}
 	
 	if( str == QString( "The following packages will be upgraded" )) { stage = Upgraded; return 0; }
@@ -72,7 +73,7 @@ int AptCommit::appendString( QString str ) {
 	}
 
 	// Prepare to install
-	if( str.startsWith( "Do you want to continue? [Y/n]" ) || str.endsWith( "not upgraded." ) ) {
+	if( str.startsWith( "Do you want to continue? [Y/n]" ) ) {
 		QString statistics = tr("There are %1 upgraded, %2 installed,\n%3 removed, %4 kept packages.\nDo you want to install this packages?").arg( 
 				upgraded.count() ).arg(
 				installed.count() ).arg(
@@ -104,7 +105,9 @@ int AptCommit::appendString( QString str ) {
 		}
 		
 		int ret;
-		totalPackages = installed.count() + upgraded.count() + removed.count();
+		all << installed << upgraded;
+		all.sort();
+		totalPackages = all.count();
 		
 		if( totalPackages == 0 ) {
 			showDialog( tr("Nothing to install"), tr("Nothing to install. There are newest version of packages."), QString() );
@@ -148,14 +151,40 @@ int AptCommit::appendString( QString str ) {
 	}
 
 	// Read packages
-	if( stage == Preparing && str.length() != str.count( "#" ) && totalPackages ) {
+	if( stage == Preparing && str.length() != str.count( "#" ) && totalPackages > -1 ) {
 		currentFile = str;
+		
+		// Process package name
+		currentFile.replace( QRegExp( "^([0-9]*:)?([^#[:blank:]]*)([[:blank:]]*)#*</i>" ), "\\2" );
+		currentFile = currentFile.trimmed();
+		
+		// Lookup in package names
+		int pos = all.indexOf( QRegExp( QString("^") + currentFile ) );
+		//qDebug() << currentFile << pos << all;
+		
+		if( pos > -1 ) { 
+			currentFile = all.at( pos );
+		} else {
+			//if( currentFile.startsWith( "Running" ) ) {
+			//}
+			currentFile.clear();
+		}
+		//qDebug() << totalPackages << (int)( ( 100 * count ) / total ) << count << total;
 		totalPackages--;
 	}
 
 	// Progress
 	if( stage == Preparing ) {
-		setStatus( tr("Preparing..."), (int)( ( 100 * count ) / total ), currentFile );
+		if( count < 50 ) { // Preparing
+			setStatus( tr("Preparing..."), (int)( ( 100 * count ) / total ), currentFile );
+		} else { // Post actions
+			if( currentFile.isEmpty() ) {
+				setStatus( tr("Finishing installation..."), (int)( ( 100 * count ) / total ), currentFile );
+			} else {
+				setStatus( tr("Installing package..."), (int)( ( 100 * count ) / total ), currentFile );
+			}
+		}
+	
 		count += str.count( "#" );
 		return 0;
 	}

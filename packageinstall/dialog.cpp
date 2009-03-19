@@ -70,7 +70,7 @@ Dialog::Dialog( QStringList *p, QWidget *parent, Qt::WFlags flags )
 	progress->setValue( 0 );
 	file     = new QLabel( "" );
 
-	QPushButton *cancel  = new QPushButton( tr( "&Cancel" ) );
+	cancel  = new QPushButton( tr( "&Cancel" ) );
 	cancel->setWhatsThis( tr( "Quit from application" ) );
 
 	QVBoxLayout *mainLayout = new QVBoxLayout;
@@ -108,19 +108,28 @@ Dialog::Dialog( QStringList *p, QWidget *parent, Qt::WFlags flags )
 	env.replaceInStrings( QRegExp("^LANG=(.*)", Qt::CaseInsensitive), "LANG=C" );
 	process->setEnvironment( env );
 	
-	//connect( process, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(close()) ); //TODO
+	connect( process, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(on_processStop()) );
 	connect( process, SIGNAL(readyReadStandardOutput()), this, SLOT(on_readOutput()) );
 	connect( process, SIGNAL(readyReadStandardError()), this, SLOT(on_readError()) );
+	connect( this, SIGNAL(destroyed()), this, SLOT(on_windowClose()) );
+	connect( this, SIGNAL(rejected()), this, SLOT(on_windowClose()) );
 
 }
 
 Dialog::~Dialog()
 {
-    if (process->state() == QProcess::Running) {
+	on_windowClose();
+}
+
+
+// Terminate process
+void Dialog::on_windowClose() {
+	if (process->state() == QProcess::Running) {
         process->terminate();
         process->waitForFinished(3000);
     }
 }
+
 
 // Start installation process
 void Dialog::start() {
@@ -167,6 +176,12 @@ void Dialog::on_processStart() {
 }
 
 
+// On finish process
+void Dialog::on_processStop() {
+	if( cancel )
+		cancel->setText( tr("&Exit") );
+}
+
 // Read from process output
 void Dialog::on_readOutput() {
 	
@@ -198,10 +213,11 @@ void Dialog::on_readError() {
 		str = QString( buf.data() );
 		commit.appendError( str );
 		if( ! str.isEmpty() ) {
-			//QMessageBox::critical( this, tr("Unsufficient privileges"), 
-			//	tr("Program should be run with superuser privileges.\nCheck your rights and program installation.") );
-			//close();
-			printf( "Error: %s", qPrintable( str ) );
+			if( str.startsWith( "E: Unable to write to /var/cache/apt/" ) ) {
+				QMessageBox::critical( this, tr("Unsufficient privileges"), 
+					tr("Program should be run with superuser privileges.\nCheck your rights and program installation.") );
+				close();
+			}
 		}
 	}
 }
@@ -239,8 +255,11 @@ int showDialog( QString title, QString text, QString details ) {
 		msgBox.setDefaultButton( QMessageBox::Ok );
 		
 		int ret = msgBox.exec();
+		
 		if( ret == QMessageBox::Cancel ) {
 			dlg->close();
+		} else {
+			msgBox.close();
 		}
 		return ret;
 	}

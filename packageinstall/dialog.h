@@ -45,16 +45,19 @@ public:
     QProcess *process;
     
 private:
-	QStringList *packages;
-	QLabel *status;
+	QStringList  *packages;
+	QLabel       *status;
 	QProgressBar *progress;
-	QLabel *file;
-	AptCommit commit;
+	QLabel       *file;
+	QPushButton  *cancel;
+	AptCommit    commit;
 
 private slots:
 	void on_processStart();
 	void on_readOutput();
 	void on_readError();
+	void on_windowClose();
+	void on_processStop();
 
 };
 
