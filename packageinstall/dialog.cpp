@@ -219,6 +219,11 @@ void Dialog::on_readError() {
 					tr("Program should be run with superuser privileges.\nCheck your rights and program installation.") );
 				close();
 			}
+			if( str.startsWith( "E: Error while running transaction" ) ) {
+				QMessageBox::critical( this, tr("Installation error"),
+                                       tr("Installation is failed.\nCheck output log.") );
+                                close();
+			}
 		}
 	}
 }
