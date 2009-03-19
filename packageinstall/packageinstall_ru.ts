@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="ru">
+<defaultcodec></defaultcodec>
 <context>
     <name>AptCommit</name>
     <message>
-        <location filename="aptcommit.cpp" line="77"/>
+        <location filename="aptcommit.cpp" line="78"/>
         <source>There are %1 upgraded, %2 installed,
 %3 removed, %4 kept packages.
 Do you want to install this packages?</source>
@@ -12,14 +13,14 @@ Do you want to install this packages?</source>
 Установить эти пакеты?</translation>
     </message>
     <message>
-        <location filename="aptcommit.cpp" line="91"/>
+        <location filename="aptcommit.cpp" line="92"/>
         <source>Packages to be installed:
 </source>
         <translation>Пакеты, которые будут установлены:
 </translation>
     </message>
     <message>
-        <location filename="aptcommit.cpp" line="95"/>
+        <location filename="aptcommit.cpp" line="96"/>
         <source>
 Packages to be upgraded:
 </source>
@@ -27,7 +28,7 @@ Packages to be upgraded:
 </translation>
     </message>
     <message>
-        <location filename="aptcommit.cpp" line="99"/>
+        <location filename="aptcommit.cpp" line="100"/>
         <source>
 Packages to be removed:
 </source>
@@ -35,7 +36,7 @@ Packages to be removed:
 </translation>
     </message>
     <message>
-        <location filename="aptcommit.cpp" line="103"/>
+        <location filename="aptcommit.cpp" line="104"/>
         <source>
 Packages to be kept back:
 </source>
@@ -43,37 +44,37 @@ Packages to be kept back:
 </translation>
     </message>
     <message>
-        <location filename="aptcommit.cpp" line="113"/>
+        <location filename="aptcommit.cpp" line="114"/>
         <source>Nothing to install</source>
         <translation>Нечего обновлять</translation>
     </message>
     <message>
-        <location filename="aptcommit.cpp" line="113"/>
+        <location filename="aptcommit.cpp" line="114"/>
         <source>Nothing to install. There are newest version of packages.</source>
         <translation>Нет пакетов для установки и обновления.</translation>
     </message>
     <message>
-        <location filename="aptcommit.cpp" line="117"/>
+        <location filename="aptcommit.cpp" line="118"/>
         <source>Statistics</source>
         <translation>Статистика</translation>
     </message>
     <message>
-        <location filename="aptcommit.cpp" line="179"/>
+        <location filename="aptcommit.cpp" line="180"/>
         <source>Preparing...</source>
         <translation>Подготовка к установке...</translation>
     </message>
     <message>
-        <location filename="aptcommit.cpp" line="144"/>
+        <location filename="aptcommit.cpp" line="145"/>
         <source>Installation is finished successful</source>
         <translation>Установка завершена успешно</translation>
     </message>
     <message>
-        <location filename="aptcommit.cpp" line="182"/>
+        <location filename="aptcommit.cpp" line="183"/>
         <source>Finishing installation...</source>
         <translation>Завершение установки...</translation>
     </message>
     <message>
-        <location filename="aptcommit.cpp" line="184"/>
+        <location filename="aptcommit.cpp" line="185"/>
         <source>Installing package...</source>
         <translation>Установка пакета...</translation>
     </message>
@@ -127,16 +128,28 @@ Packages to be kept back:
         <translation>В&amp;ыход</translation>
     </message>
     <message>
-        <location filename="dialog.cpp" line="217"/>
+        <location filename="dialog.cpp" line="218"/>
         <source>Unsufficient privileges</source>
         <translation>Недостаточно привилегий</translation>
     </message>
     <message>
-        <location filename="dialog.cpp" line="218"/>
+        <location filename="dialog.cpp" line="219"/>
         <source>Program should be run with superuser privileges.
 Check your rights and program installation.</source>
         <translation>Программа должна быть запущена с привилегиями
 суперпользователя (root). Проверьте права доступа.</translation>
+    </message>
+    <message>
+        <location filename="dialog.cpp" line="223"/>
+        <source>Installation error</source>
+        <translation>Ошибка установки</translation>
+    </message>
+    <message>
+        <location filename="dialog.cpp" line="224"/>
+        <source>Installation is failed.
+Check output log.</source>
+        <translation>Во время установки произошла ошибка.
+Работа приложения будет завершена.</translation>
     </message>
 </context>
 <context>
