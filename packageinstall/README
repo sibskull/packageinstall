@@ -6,7 +6,7 @@ packageinstall
 Graphical application for install 
 packages using apt-get
 
-Version 1.0
+Version 1.0.0
 
 =================================
 

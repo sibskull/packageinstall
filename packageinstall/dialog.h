@@ -24,7 +24,7 @@
 #include "aptcommit.h"
 
 #define APPNAME		"packageinstall"
-#define APPVERSION	"1.0"
+#define APPVERSION	"1.0.0"
 #define ICON		"rpm-package.png"
 
 class AptCommit;
