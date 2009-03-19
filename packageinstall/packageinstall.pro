@@ -1,6 +1,4 @@
 
-include(config.pri)
-
 SOURCES += main.cpp \
            dialog.cpp \
            aptcommit.cpp
@@ -22,13 +20,18 @@ CONFIG += release \
 
 TARGET = packageinstall
 
-DESTDIR = .
+DESTDIR = $$(DESTDIR)
+PREFIX = $$(PREFIX)
 
-DATADIR = $$PREFIX/share/apps/packageinstall/
+isEmpty( PREFIX ) {
+PREFIX = /usr/local
+}
 
-DEFINES += DATADIR=\\\"$$DATADIR\\\"
+DATADIR = $$DESTDIR/$$PREFIX/share/apps/packageinstall/
 
-target.path = $$PREFIX/bin/
+DEFINES += DATADIR=\\\"$$PREFIX/share/apps/packageinstall/\\\"
+
+target.path = $$DESTDIR/$$PREFIX/bin/
 
 translations.files = *.qm
 translations.path = $$DATADIR
@@ -39,3 +42,4 @@ icons.path = $$DATADIR
 INSTALLS += target
 INSTALLS += translations 
 INSTALLS += icons
+

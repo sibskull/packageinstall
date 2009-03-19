@@ -1,0 +1,4 @@
+USER=root
+PROGRAM=/usr/sbin/packageinstall
+SESSION=true
+FALLBACK=true
