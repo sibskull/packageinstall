@@ -21,6 +21,7 @@
 #include <QProcess>
 #include <iostream>
 #include "dialog.h"
+#include "ui_msgdialog.h"
 
 static Dialog *dlg;
 
@@ -106,6 +107,7 @@ Dialog::Dialog( QStringList *p, QWidget *parent, Qt::WFlags flags )
 	process = new QProcess( this );
 	QStringList env = QProcess::systemEnvironment();
 	env.replaceInStrings( QRegExp("^LANG=(.*)", Qt::CaseInsensitive), "LANG=C" );
+	env.replaceInStrings( QRegExp("^LC_ALL=(.*)", Qt::CaseInsensitive), "LC_ALL=C" );
 	process->setEnvironment( env );
 	
 	connect( process, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(on_processStop()) );
@@ -125,7 +127,7 @@ Dialog::~Dialog()
 // Terminate process
 void Dialog::on_windowClose() {
 	if (process->state() == QProcess::Running) {
-        process->terminate();
+        
         process->waitForFinished(3000);
     }
 }
@@ -224,6 +226,11 @@ void Dialog::on_readError() {
                                        tr("Installation is failed.\nCheck output log.") );
                                 close();
 			}
+                        if( str.startsWith( "E: Couldn't find package" ) ) {
+                            QMessageBox::critical( this, tr("Wrong package name"),
+                                   tr("Couldn't find package\n'%1'").arg( str.simplified().right( str.length() - 26 ) ) );
+                            close();
+                        }
 		}
 	}
 }
@@ -247,31 +254,30 @@ void setStatus( QString stage, int percent, QString fileName ) {
 // Show statistics
 int showDialog( QString title, QString text, QString details ) {
 			
-	if( dlg ) {
-		QMessageBox msgBox;
-		
-		msgBox.setWindowTitle( title );
-		msgBox.setText( text );
-		if( ! details.isEmpty() ) {
-			msgBox.setDetailedText( details );
-			msgBox.setStandardButtons( QMessageBox::Ok | QMessageBox::Cancel );
-		} else {
-			msgBox.setStandardButtons( QMessageBox::Ok );
-		}
-		msgBox.setDefaultButton( QMessageBox::Ok );
-		
-		int ret = msgBox.exec();
-		
-		if( ret == QMessageBox::Cancel ) {
-			dlg->close();
-		} else {
-			msgBox.close();
-		}
-		return ret;
-	}
-	return 0;
-}
+        QDialog *d = new QDialog();
+        Ui_MsgDialog *msgBox = new Ui_MsgDialog();
+        msgBox->setupUi( d );
 
+        d->setWindowTitle( title );
+        msgBox->text->setText( text );
+
+		msgBox->label->setPixmap( QPixmap( QString( "%1%2" ).arg( DATADIR ).arg( "rpm-package.png" ) ) );
+		d->setWindowIcon( QIcon( QString( "%1%2" ).arg( DATADIR ).arg( "rpm-package.png" ) ) );
+
+        msgBox->details->hide();
+        if( ! details.isEmpty() ) {
+            msgBox->details->setPlainText( details );
+            d->setGeometry( 0, 0, 50, 50 );
+        } else {
+            msgBox->bDetails->hide();
+            msgBox->bInstall->hide();
+            msgBox->bCancel->setText( QObject::tr("&Close") );
+            d->setGeometry( 0, 0, 50, 50 );
+        }
+
+        int ret = d->exec();
+        return ret;
+}
 
 // Write to process
 void processWrite( QString str ) {

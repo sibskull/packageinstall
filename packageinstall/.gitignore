@@ -1,0 +1,7 @@
+packageinstall
+packageinstall.pro.user
+*.o
+Makefile
+moc_*.cpp
+qrc_*.cpp
+*.qm

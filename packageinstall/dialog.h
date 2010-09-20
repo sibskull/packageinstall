@@ -40,24 +40,24 @@ class Dialog : public QDialog
 public:
     Dialog( QStringList *p, QWidget *parent = 0, Qt::WFlags flags = 0 );
     ~Dialog();
-	void start();
-	void iSetStatus( QString stage, int percent, QString fileName );
+    void start();
+    void iSetStatus( QString stage, int percent, QString fileName );
     QProcess *process;
     
 private:
-	QStringList  *packages;
-	QLabel       *status;
-	QProgressBar *progress;
-	QLabel       *file;
-	QPushButton  *cancel;
-	AptCommit    commit;
+    QStringList  *packages;
+    QLabel       *status;
+    QProgressBar *progress;
+    QLabel       *file;
+    QPushButton  *cancel;
+    AptCommit    commit;
 
 private slots:
-	void on_processStart();
-	void on_readOutput();
-	void on_readError();
-	void on_windowClose();
-	void on_processStop();
+    void on_processStart();
+    void on_readOutput();
+    void on_readError();
+    void on_windowClose();
+    void on_processStop();
 
 };
 

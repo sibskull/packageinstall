@@ -17,6 +17,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
+#include <iostream>
 #include "aptcommit.h"
 #include "dialog.h"
 
@@ -40,13 +41,12 @@ int AptCommit::appendString( QString str ) {
 	QStringList pkgs;
 	output << str;
 	
-	// Test output
-	//if( stage == Preparing ) {
-	//	qDebug() << str;
-	//}
+        // debug output
+        //std::cerr << qPrintable( str ) << std::endl;
 	
 	if( str == QString( "The following packages will be upgraded" )) { stage = Upgraded; return 0; }
 	if( str == QString( "The following NEW packages will be installed:" )) { stage = Installed; return 0; }
+	if( str == QString( "The following extra packages will be installed:" )) { stage = Installed; return 0; }
 	if( str == QString( "The following packages will be REMOVED:" )) { stage = Removed; return 0; }
 	if( str == QString( "The following packages have been kept back" )) { stage = Kept; return 0; }
 		
@@ -111,7 +111,7 @@ int AptCommit::appendString( QString str ) {
 		totalPackages = all.count();
 		
 		if( totalPackages == 0 ) {
-			showDialog( tr("Nothing to install"), tr("Nothing to install. There are newest version of packages."), QString() );
+                        showDialog( tr("Nothing to install"), tr("Nothing to install.\nThere are newest version of packages."), QString() );
 			ret = 0;
 		} else {
 			if( packages->count() < totalPackages ) {
@@ -122,6 +122,7 @@ int AptCommit::appendString( QString str ) {
 		}
 		
 		if( ret == 0 ) {
+			processWrite( QString( "N\n" ) );	
 			QApplication::exit( 0 );
 		} else {
 			processWrite( QString( "Y\n" ) );	
