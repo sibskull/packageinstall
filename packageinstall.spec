@@ -1,7 +1,7 @@
 
 Name:		packageinstall
 Version:	1.0.0
-Release:	alt2
+Release:	alt1.M41.1
 Summary:	GUI frontend for install packages using apt-get
 
 License:	GPL
@@ -45,6 +45,9 @@ install -pD -m640 %name.security %buildroot%_sysconfdir/security/console.apps/%n
 %config(noreplace) %_sysconfdir/security/console.apps/%name
 
 %changelog
+* Fri Sep 24 2010 Andrey Cherepanov <cas@altlinux.org> 1.0.0-alt1.M41.1
+- backport to 4.1 branch
+
 * Mon Sep 20 2010 Andrey Cherepanov <cas@altlinux.org> 1.0.0-alt2
 - clear spec
 - small fixes
