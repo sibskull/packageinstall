@@ -1,7 +1,7 @@
 
 Name:		packageinstall
-Version:	1.0.0
-Release:	alt2
+Version:	1.1.0
+Release:	alt1
 Summary:	GUI frontend for install packages using apt-get
 
 License:	GPL
@@ -45,6 +45,13 @@ install -pD -m640 %name.security %buildroot%_sysconfdir/security/console.apps/%n
 %config(noreplace) %_sysconfdir/security/console.apps/%name
 
 %changelog
+* Tue Jul 26 2011 Andrey Cherepanov <cas@altlinux.org> 1.1.0-alt1
+- Complete rewrite UI
+- Append statistics to main dialog
+- Copy apt output to console
+- Use buffer read apt output (closes: #25882)
+- Add support for debug script
+
 * Mon Sep 20 2010 Andrey Cherepanov <cas@altlinux.org> 1.0.0-alt2
 - clear spec
 - small fixes
