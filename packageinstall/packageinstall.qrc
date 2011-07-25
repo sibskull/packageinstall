@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>rpm-package.png</file>
+  </qresource>
+</RCC>

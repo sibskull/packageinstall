@@ -26,53 +26,56 @@
 int main( int argc, char *argv[] ) {
 
     // Application instance
-	QApplication app( argc, argv );
-	
-	// Load localization
-	QTranslator translator;
-	QString locale = QLocale::system().name();
-	translator.load( QString( "qt_" ).append( locale.split( "_" ).at( 0 ) ), QLibraryInfo::location( QLibraryInfo::TranslationsPath ) );
-	translator.load( QString( DATADIR ) + QString( APPNAME ) + QString ( "_" ) + locale );
+    QApplication app( argc, argv );
+
+    // Load localization
+    QTranslator translator;
+    QString locale = QLocale::system().name();
+    translator.load( QString( "qt_" ).append( locale.split( "_" ).at( 0 ) ), QLibraryInfo::location( QLibraryInfo::TranslationsPath ) );
+    translator.load( QString( DATADIR ) + QString( APPNAME ) + QString ( "_" ) + locale );
     app.installTranslator( &translator );
-	 
-	// Set application details
-	app.setApplicationName( APPNAME );
-	
-	// Process command line arguments
-	
-	// Show help
-	if( app.arguments().contains( "--help" ) || app.arguments().contains( "-h" ) ) {
-		std::cout << qPrintable( QObject::tr( "%1 %2. Program for install packages from APT repositories", 
-			"%1 is application name, %2 is application version").arg( APPNAME ).arg( APPVERSION ) ) << std::endl;
-		std::cout << qPrintable( QObject::tr( "Usage: %1 [option] package...", 
-			"%1 is application name" ).arg( APPNAME ) )<< std::endl << std::endl;
-		std::cout << qPrintable( QObject::tr( "Available options:" ) ) << std::endl;
-		std::cout << qPrintable( QObject::tr( "    -h         This help" ) ) << std::endl;
-		std::cout << qPrintable( QObject::tr( "    --version  Version information" ) ) << std::endl;
-		exit( 0 );
-	}
 
-	// Print version information
-	if( app.arguments().contains( "--version" ) ) {
-		std::cout << qPrintable( QObject::tr( "%1 %2", 
-			"%1 is application name, %2 is application version").arg( APPNAME ).arg( APPVERSION ) ) << std::endl;
-		exit( 0 );
-	}
-	
-	// Fill package list
-	QStringList *names = new QStringList();
-	for (int i = 1; i < app.arguments().size(); ++i) {
-		  if( app.arguments().at(i)[0] != '-' ) {
-				names->append( app.arguments().at(i) );
-		  }
-	}
+    // Set application details
+    app.setApplicationName( APPNAME );
 
-	// Main widget
-	Dialog *dialog = new Dialog( names );
-	dialog->show();
+    // Process command line arguments
 
-	// Run process
-	dialog->start();
-	
-	return app.exec();
+    // Show help
+    if( app.arguments().contains( "--help" ) || app.arguments().contains( "-h" ) ) {
+        std::cout << qPrintable( QObject::tr( "%1 %2. Program for install packages from APT repositories",
+                                             "%1 is application name, %2 is application version").arg( APPNAME ).arg( APPVERSION ) ) << std::endl;
+        std::cout << qPrintable( QObject::tr( "Usage: %1 [option] package...",
+                                             "%1 is application name" ).arg( APPNAME ) )<< std::endl << std::endl;
+        std::cout << qPrintable( QObject::tr( "Available options:" ) ) << std::endl;
+        std::cout << qPrintable( QObject::tr( "    -h         This help" ) ) << std::endl;
+        std::cout << qPrintable( QObject::tr( "    --version  Version information" ) ) << std::endl;
+        exit( 0 );
+    }
+
+    // Print version information
+    if( app.arguments().contains( "--version" ) ) {
+        std::cout << qPrintable( QObject::tr( "%1 %2",
+                                             "%1 is application name, %2 is application version").arg( APPNAME ).arg( APPVERSION ) ) << std::endl;
+        exit( 0 );
+    }
+
+    // Fill package list
+    QStringList *names = new QStringList();
+    for (int i = 1; i < app.arguments().size(); ++i) {
+        if( app.arguments().at(i)[0] != '-' ) {
+            names->append( app.arguments().at(i) );
+        }
+    }
+
+    // Main widget
+    /*Dialog *dialog = new Dialog( names );
+    dialog->show();
+
+    // Run process
+    dialog->start();*/
+    Dialog d( names );
+    d.show();
+    d.start();
+
+    return app.exec();
 }

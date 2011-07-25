@@ -21,268 +21,303 @@
 #include <QProcess>
 #include <iostream>
 #include "dialog.h"
-#include "ui_msgdialog.h"
+
+//#define DEBUG
 
 static Dialog *dlg;
 
 Dialog::Dialog( QStringList *p, QWidget *parent, Qt::WFlags flags )
-        : QDialog( parent, flags )
+    : QDialog( parent, flags )
 {
-	// Save package list
-	packages = p;
+    // Save package list
+    packages = p;
 
-	// Make dialog available system wide
-	dlg = this;
+    // State
+    state = 0;
+    briefed = true;
 
-	// Forbid maximized
-	//setWindowState(  Qt::WindowMinimized | Qt::WindowActive );
-	setWindowModality(Qt::ApplicationModal);
-	setMinimumSize( 450, 250 );
-	setMaximumSize( 450, 250 );
-	
-	// Set properties
-	setWindowIcon( QIcon( QString( DATADIR ) + QString( ICON ) ) );
-	setWindowTitle( tr( "Installing packages" ) );
-	
-	// Widgets
-	QHBoxLayout *title = new QHBoxLayout();
-	title->setSpacing( 15 );
-	
-	QLabel *icon    = new QLabel();
-	icon->setAlignment( Qt::AlignTop | Qt::AlignLeft );
-	icon->setSizePolicy( QSizePolicy( QSizePolicy::Minimum, QSizePolicy::Minimum ) );
-	icon->setPixmap( QString( DATADIR ) + QString( ICON ) );
-	
-	QLabel *message = new QLabel( ( packages->count() == 0 ? 
-		tr("<b>Updating system</b><br>Please, wait...") : 
-		tr("<b>Installing packages</b><br>Please, wait...") ) );
-	message->setWordWrap( true );
-	message->setAlignment( Qt::AlignVCenter | Qt::AlignLeft );
-	message->setSizePolicy( QSizePolicy( QSizePolicy::Expanding, QSizePolicy::Minimum ) );
+    // Make dialog available system wide
+    dlg = this;
 
-	title->addWidget( icon );
-	title->addWidget( message );
+    // Open UI form
+    d = new Ui_Packageinstall();
+    d->setupUi( this );
 
-	status   = new QLabel( "" );
-	progress = new QProgressBar();
-	progress->setTextVisible( true );
-	progress->setMinimum( 0 );
-	progress->setMaximum( 100 );
-	progress->setValue( 0 );
-	file     = new QLabel( "" );
+    // Adapt UI
+    d->title->setText( ( packages->count() == 0 ?
+     tr("<b>Updating system</b><br>Please, wait...") :
+     tr("<b>Installing packages</b><br>Please, wait...") ) );
 
-	cancel  = new QPushButton( tr( "&Cancel" ) );
-	cancel->setWhatsThis( tr( "Quit from application" ) );
+    d->stack->setCurrentIndex( 0 );
+    d->bInstall->hide();
 
-	QVBoxLayout *mainLayout = new QVBoxLayout;
-	mainLayout->setSpacing( 10 );
-	
-	QFrame *line = new QFrame();                                                   
-    line->setFrameShape(QFrame::HLine);
-    line->setFrameShadow(QFrame::Sunken);
+    // Create process
+    process = new QProcess( this );
 
-	mainLayout->addLayout( title );
-	mainLayout->addWidget( line );
+    QStringList env = QProcess::systemEnvironment();
+    env.replaceInStrings( QRegExp("^LANG=(.*)", Qt::CaseInsensitive), "LANG=C" );
+    env.replaceInStrings( QRegExp("^LC_ALL=(.*)", Qt::CaseInsensitive), "LC_ALL=C" );
+    process->setEnvironment( env );
 
-	// Information block
-	mainLayout->addWidget( status );
-	mainLayout->addWidget( progress );
-	mainLayout->addWidget( file );
-	
-	QSpacerItem *verticalSpacer = new QSpacerItem( 400, 100, QSizePolicy::Minimum, QSizePolicy::Expanding );
-	mainLayout->addItem( verticalSpacer );
+    connect( process, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(processStop()) );
+    connect( process, SIGNAL(readyReadStandardOutput()), this, SLOT(readOutput()) );
+    connect( process, SIGNAL(readyReadStandardError()), this, SLOT(readError()) );
+    //connect( dlg, SIGNAL(rejected()), this, SLOT(cancelPressed()) );
 
-	QDialogButtonBox *buttonBox = new QDialogButtonBox( Qt::Horizontal );
-    buttonBox->addButton( cancel,  QDialogButtonBox::RejectRole );
-
-	mainLayout->addWidget( buttonBox );
-	
-	// Set layout
-	setLayout( mainLayout );
-
-	// Connect signals and slots
-    connect( buttonBox, SIGNAL(rejected()), this, SLOT(reject()) );	
-
-	// Create process
-	process = new QProcess( this );
-	QStringList env = QProcess::systemEnvironment();
-	env.replaceInStrings( QRegExp("^LANG=(.*)", Qt::CaseInsensitive), "LANG=C" );
-	env.replaceInStrings( QRegExp("^LC_ALL=(.*)", Qt::CaseInsensitive), "LC_ALL=C" );
-	process->setEnvironment( env );
-	
-	connect( process, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(on_processStop()) );
-	connect( process, SIGNAL(readyReadStandardOutput()), this, SLOT(on_readOutput()) );
-	connect( process, SIGNAL(readyReadStandardError()), this, SLOT(on_readError()) );
-	connect( this, SIGNAL(destroyed()), this, SLOT(on_windowClose()) );
-	connect( this, SIGNAL(rejected()), this, SLOT(on_windowClose()) );
+    // Buttons
+    connect( d->bDetails, SIGNAL(clicked()), this, SLOT(detailPressed()) );
+    connect( d->bInstall, SIGNAL(clicked()), this, SLOT(installPressed()) );
+    connect( d->bCancel,  SIGNAL(clicked()), this, SLOT(cancelPressed()) );
 
 }
 
 Dialog::~Dialog()
 {
-	on_windowClose();
+    if (process->state() == QProcess::Running) {
+        process->kill();
+    }
 }
 
 
 // Terminate process
-void Dialog::on_windowClose() {
-	if (process->state() == QProcess::Running) {
-        
-        process->waitForFinished(3000);
+void Dialog::windowClose() {
+    ////qDebug( "windowClose" );
+    if (process->state() == QProcess::Running) {
+        process->kill();
     }
+    //close();
 }
 
 
 // Start installation process
 void Dialog::start() {
-	on_processStart();
+    processStart();
 }
 
+// Process close event
+void Dialog::closeEvent( QCloseEvent *e ) {
+    //qDebug( "closeEvent" );
+    cancelPressed();
+    e->ignore();
+}
 
 // Slot for start process
-void Dialog::on_processStart() {
-	
+void Dialog::processStart() {
+    //qDebug( "processStart" );
+
     if (process->state() == QProcess::Running) {
-		return;
-	}
+        return;
+    }
 
-	QStringList args;
-   
-	// Test install
-	args << "-f";
-	
-	commit.packages = packages;
-		
-	if( packages->count() == 0 ) {
-		// On empty list of packages update all system
-		args << "dist-upgrade";
-	} else {
-		// Copy packages
-		args << "install";
-		for (int i = 0; i < packages->size(); ++i) {
-			args << packages->at(i);
-		}
-	}
-	
-	// Start process
-	process->start( "apt-get", args );
+    QStringList args;
 
-	if ( ! process->waitForStarted() ) {
-        QMessageBox::critical(this, tr("Error start"), tr("Could not start 'apt-get'. Install this program.") );
+    // Test install
+    args << "-f";
+
+
+    QString programm = QString( "apt-get" );
+#ifdef DEBUG
+    programm = QString( "./apt-get-test" );
+#endif
+
+    commit.packages = packages;
+
+    if( packages->count() == 0 ) {
+        // On empty list of packages update all system
+        args << "dist-upgrade";
+    } else {
+        // Copy packages
+        args << "install";
+        for (int i = 0; i < packages->size(); ++i) {
+            args << packages->at(i);
+        }
+    }
+
+    // Start process
+    process->start( programm, args );
+
+    if ( ! process->waitForStarted() ) {
+        QMessageBox::critical(this, tr("Error start"), tr("Could not start 'apt-get' programm.\nInstall this program.") );
         exit( 1 );
     }
-	
-	// Inform about first stage
-	setStatus( tr("Check package requirements..."), 0, "" );
-	
+
+    // Inform about first stage
+    setStatus( tr("Check package requirements..."), 0, "" );
+
 }
 
 
 // On finish process
-void Dialog::on_processStop() {
-	if( cancel ) {
-		cancel->setText( tr("&Exit") );
-	}
+void Dialog::processStop() {
+    //qDebug( "processStop" );
+
+    if( d ) {
+        d->bCancel->setText( tr("&Exit") );
+        state = 5;
+    }
 }
 
 // Read from process output
-void Dialog::on_readOutput() {
-	
-	QByteArray buf;
+void Dialog::readOutput() {
 
-	process->setReadChannel( QProcess::StandardOutput );
-	
-	QByteArray bytes = process->readAll();
-	QStringList lines = QString( bytes ).split( "\n" );
-	foreach( QString line, lines ) {
-		//if( ! line.isEmpty() ) {
+    char buf[255];
+	int l, p;
+	QString str, line, tail;
+
+    process->setReadChannel( QProcess::StandardOutput );
+
+    // Read to buffer
+    while( ( l = process->readLine( buf, 255 ) ) > 0 ) {
+		//if( l > 0 && buf[ l - 1 ] == '\n' ) buf[ l - 1 ] = '\0'; // Remove trailing \n
+		str = tail.append( buf );
+		p = str.indexOf( QChar( '\n' ) );
+
+		// Append ready string
+		if( p > 0 ) {
+			line = str.left( p );
+			tail = str.mid( p + 1 );
+
+			if( d ) {
+				d->log->append( line );
+			}
 			commit.appendString( line );
-		//}
-	}
-
+		} else {
+			tail = str;
+		}
+    }
 }
 
 
 // Read from process errors
-void Dialog::on_readError() {
-	
-	QByteArray buf;
-	QString str;
-	
-	process->setReadChannel( QProcess::StandardError );
-	
-	while( process->canReadLine() ) {
-		buf = process->readLine();
-		str = QString( buf.data() );
-		commit.appendError( str );
-		if( ! str.isEmpty() ) {
-			if( str.startsWith( "E: Unable to write to /var/cache/apt/" ) ) {
-				QMessageBox::critical( this, tr("Unsufficient privileges"), 
-					tr("Program should be run with superuser privileges.\nCheck your rights and program installation.") );
-				close();
-			}
-			if( str.startsWith( "E: Error while running transaction" ) ) {
-				QMessageBox::critical( this, tr("Installation error"),
-                                       tr("Installation is failed.\nCheck output log.") );
-                                close();
-			}
-                        if( str.startsWith( "E: Couldn't find package" ) ) {
-                            QMessageBox::critical( this, tr("Wrong package name"),
-                                   tr("Couldn't find package\n'%1'").arg( str.simplified().right( str.length() - 26 ) ) );
-                            close();
-                        }
-		}
-	}
+void Dialog::readError() {
+
+    QByteArray buf;
+    QString str;
+
+    process->setReadChannel( QProcess::StandardError );
+
+    while( process->canReadLine() ) {
+        buf = process->readLine();
+        str = QString( buf.data() );
+        if( str.length() > 0 && d ) d->log->append( QString( str.left( str.length() - str.endsWith( "\n" ) ) ) );
+        commit.appendError( str );
+        if( ! str.isEmpty() ) {
+            if( str.startsWith( "E: Unable to write to /var/cache/apt/" ) ) {
+                QMessageBox::critical( this, tr("Unsufficient privileges"),
+                                      tr("Program should be run with superuser privileges.\nCheck your rights and program installation.") );
+                close();
+            }
+            if( str.startsWith( "E: Error while running transaction" ) ) {
+                QMessageBox::critical( this, tr("Installation error"),
+                                      tr("Installation is failed.\nCheck output log.") );
+                close();
+            }
+            if( str.startsWith( "E: Couldn't find package" ) ) {
+                QMessageBox::critical( this, tr("Wrong package name"),
+                                      tr("Couldn't find package\n'%1'").arg( str.simplified().right( str.length() - 26 ) ) );
+                close();
+            }
+        }
+    }
+}
+
+
+// Button actions
+void Dialog::detailPressed() {
+    //qDebug() << QString( "detailPressed" ) << d->stack->currentIndex();
+    if( d->stack->currentIndex() == 0 ) { // From first pane
+        d->bDetails->setText( tr("Hide &details <<") );
+        d->stack->setCurrentIndex( 2 );
+    } else if( d->stack->currentIndex() == 2 ) { // From details pane
+        d->bDetails->setText( tr("Show &details >>") );
+        d->stack->setCurrentIndex( 0 );
+    } else {
+        if( briefed ) {
+            d->total->setHtml( description );
+            d->bDetails->setText( tr("Hide &details <<") );
+            briefed = false;
+        } else {
+            d->total->setHtml( brief );
+            d->bDetails->setText( tr("Show &details >>") );
+            briefed = true;
+        }
+    }
+
+}
+
+void Dialog::installPressed() {
+    //qDebug( "installPressed" );
+    d->stack->setCurrentIndex( 0 );
+    processWrite( QString( "Y\n" ) );
+    d->bInstall->hide();
+}
+
+
+void Dialog::cancelPressed() {
+    //qDebug() << QString( "cancelPressed" ) << state;
+    // Quit confirmation
+    if( state < 5 ) {
+        QMessageBox msgBox( this );
+        msgBox.setWindowTitle( tr("Quit") );
+        msgBox.setIcon( QMessageBox::Question );
+        msgBox.setText("Do you want to cancel installation??");
+        msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::Cancel);
+        msgBox.setDefaultButton(QMessageBox::Yes);
+        int ret = msgBox.exec();
+
+        if( ret == QMessageBox::Yes ) {
+            windowClose();
+            exit ( 1 );
+        }
+    } else {
+        windowClose();
+        exit( 0 );
+    }
 }
 
 
 // Set status information
 void Dialog::iSetStatus( QString stage, int percent, QString fileName ) {
-	status->setText( stage );
-	progress->setValue( percent );
-	file->setText( fileName );
+    //qDebug( "iSetStatus" );
+    if( d ) {
+        d->status->setText( stage );
+        d->progress->setValue( percent );
+        d->file->setText( fileName );
+    }
+}
+
+
+void Dialog::iSetStatistics( QString text, QString details ) {
+    //qDebug( "iSetStatistics" );
+    brief = text;
+    description = details;
+    if( d ) {
+        d->bInstall->show();
+        d->total->setHtml( brief );
+        d->stack->setCurrentIndex( 1 );
+    }
 }
 
 
 // Set status information (static function)
 void setStatus( QString stage, int percent, QString fileName ) {
-	if( dlg )
-		dlg->iSetStatus( stage, percent, fileName );
+    if( dlg ) {
+        dlg->iSetStatus( stage, percent, fileName );
+    }
 }
 
 
-// Show statistics
-int showDialog( QString title, QString text, QString details ) {
-			
-        QDialog *d = new QDialog();
-        Ui_MsgDialog *msgBox = new Ui_MsgDialog();
-        msgBox->setupUi( d );
-
-        d->setWindowTitle( title );
-        msgBox->text->setText( text );
-
-		msgBox->label->setPixmap( QPixmap( QString( "%1%2" ).arg( DATADIR ).arg( "rpm-package.png" ) ) );
-		d->setWindowIcon( QIcon( QString( "%1%2" ).arg( DATADIR ).arg( "rpm-package.png" ) ) );
-
-        msgBox->details->hide();
-        if( ! details.isEmpty() ) {
-            msgBox->details->setPlainText( details );
-            d->setGeometry( 0, 0, 50, 50 );
-        } else {
-            msgBox->bDetails->hide();
-            msgBox->bInstall->hide();
-            msgBox->bCancel->setText( QObject::tr("&Close") );
-            d->setGeometry( 0, 0, 50, 50 );
-        }
-
-        int ret = d->exec();
-        return ret;
+// Set statistics
+void setStatistics( QString text, QString details ) {
+    if( dlg ) {
+        dlg->iSetStatistics( text, details );
+    }
 }
 
 // Write to process
 void processWrite( QString str ) {
-	if( dlg ) {
-		dlg->process->write( QByteArray( qPrintable(str) ) );
-		dlg->process->closeWriteChannel();
-	}
+    if( dlg ) {
+        dlg->process->write( QByteArray( qPrintable(str) ) );
+        dlg->process->closeWriteChannel();
+    }
 }

@@ -26,31 +26,31 @@ class AptCommit : public QObject
 
     Q_OBJECT
 
-	enum Type { Unknown, Upgraded, Installed, Removed, Kept, Preparing, Progress };
+    enum Type { Unknown, Upgraded, Installed, Removed, Kept, Preparing, Progress };
 
 public:
     AptCommit();
-	int appendString( QString str );
-	int appendError( QString str );
+    int appendString( QString str );
+    int appendError( QString str );
     QStringList *packages;
-	
+
 private:
-	QStringList output;
-	QStringList errors;
-	
-	// Package lists
-	QStringList installed;
-	QStringList upgraded;
-	QStringList removed;
-	QStringList kept;
-	QStringList all;
-	
-	// Status
-	Type stage;
-	int count;
-	int total;
-	QString currentFile;
-	int totalPackages;
+    QStringList output;
+    QStringList errors;
+
+    // Package lists
+    QStringList installed;
+    QStringList upgraded;
+    QStringList removed;
+    QStringList kept;
+    QStringList all;
+
+    // Status
+    Type stage;
+    int count;
+    int total;
+    QString currentFile;
+    int totalPackages;
 };
 
 #endif // APTCOMMIT_H

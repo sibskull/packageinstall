@@ -8,7 +8,6 @@ TRANSLATIONS = packageinstall_ru.ts
 CONFIG -= debug
 CONFIG += release \
     exceptions \
-    build_all \
     qt \
     warn_on
 TARGET = packageinstall
@@ -27,4 +26,10 @@ INSTALLS += translations
 INSTALLS += icons
 
 FORMS += \
-    msgdialog.ui
+    packageinstall.ui
+
+RESOURCES += \
+    packageinstall.qrc
+
+OTHER_FILES += \
+    apt-get-test

@@ -22,14 +22,15 @@
 #include <QtGui>
 #include <QProcess>
 #include "aptcommit.h"
+#include "ui_packageinstall.h"
 
 #define APPNAME		"packageinstall"
-#define APPVERSION	"1.0.0"
+#define APPVERSION	"1.1.0"
 #define ICON		"rpm-package.png"
 
 class AptCommit;
 void setStatus( QString stage, int percent, QString fileName );
-int showDialog( QString title, QString text, QString details );
+void setStatistics( QString text, QString details );
 void processWrite( QString str );
 
 class Dialog : public QDialog
@@ -42,22 +43,32 @@ public:
     ~Dialog();
     void start();
     void iSetStatus( QString stage, int percent, QString fileName );
+    void iSetStatistics( QString text, QString details );
     QProcess *process;
-    
+
 private:
-    QStringList  *packages;
-    QLabel       *status;
-    QProgressBar *progress;
-    QLabel       *file;
-    QPushButton  *cancel;
     AptCommit    commit;
+    QStringList  *packages;
+    Ui_Packageinstall *d;
+    bool briefed;
+    int state;
+    QString brief;
+    QString description;
+
+private:
+    void closeEvent( QCloseEvent *e );
 
 private slots:
-    void on_processStart();
-    void on_readOutput();
-    void on_readError();
-    void on_windowClose();
-    void on_processStop();
+    void processStart();
+    void readOutput();
+    void readError();
+    void windowClose();
+    void processStop();
+
+    // Button actions
+    void detailPressed();
+    void installPressed();
+    void cancelPressed();
 
 };
 
