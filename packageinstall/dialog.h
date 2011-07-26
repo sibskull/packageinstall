@@ -49,6 +49,7 @@ public:
 private:
     AptCommit    commit;
     QStringList  *packages;
+	QString tail;
     Ui_Packageinstall *d;
     bool briefed;
     int state;

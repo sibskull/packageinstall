@@ -154,12 +154,12 @@ int AptCommit::appendString( QString str ) {
         currentFile = str;
 
         // Process package name
-        currentFile.replace( QRegExp( "^([0-9]*:)?([^#[:blank:]]*)([[:blank:]]*)#*</i>" ), "\\2" );
+        currentFile.replace( QRegExp( "^([0-9]*:)?([^#\\s]*)[\\s]*#*$" ), "\\2" );
         currentFile = currentFile.trimmed();
 
         // Lookup in package names
         int pos = all.indexOf( QRegExp( QString("^") + currentFile ) );
-        //qDebug() << currentFile << pos << all;
+		//qDebug() << currentFile << pos << all;
 
         if( pos > -1 ) {
             currentFile = all.at( pos );

@@ -152,6 +152,7 @@ void Dialog::processStop() {
     //qDebug( "processStop" );
 
     if( d ) {
+		setStatus( tr("Installation is finished successful"), 100, QString( "" ) );
 		d->bInstall->hide();
 		d->bCancel->setText( tr("&Exit") );
         state = 5;
@@ -161,31 +162,32 @@ void Dialog::processStop() {
 // Read from process output
 void Dialog::readOutput() {
 
-    char buf[255];
-	int l, p;
-	QString str, line, tail;
+	int p;
+	QString str, line, b;
+	QByteArray ba;
 
     process->setReadChannel( QProcess::StandardOutput );
 
-    // Read to buffer
-    while( ( l = process->readLine( buf, 255 ) ) > 0 ) {
-		//if( l > 0 && buf[ l - 1 ] == '\n' ) buf[ l - 1 ] = '\0'; // Remove trailing \n
-		str = tail.append( buf );
-		p = str.indexOf( QChar( '\n' ) );
+	// Read all
+	ba = process->readAll();
+	b = QString( ba );
 
-		// Append ready string
-		if( p > 0 ) {
-			line = str.left( p );
-			tail = str.mid( p + 1 );
+	// Add to buffer
+	str = tail.append( b );
 
-			if( d ) {
-				d->log->append( line );
-			}
-			commit.appendString( line );
-		} else {
-			tail = str;
+	//qDebug() << QString( "%1 %3 ==%2==").arg( b.size() ).arg( b ).arg( str.indexOf( QChar( '\n' ) ) );
+
+	// Split output to lines
+	while( ( p = str.indexOf( QChar( '\n' ) ) ) > 0 ) {
+		line = str.left( p );
+		str = str.mid( p + 1 );
+
+		if( d ) {
+			d->log->append( line );
 		}
-    }
+		commit.appendString( line );
+	}
+	tail = str;
 }
 
 
