@@ -51,6 +51,7 @@ install -pD -m640 %name.security %buildroot%_sysconfdir/security/console.apps/%n
 - Copy apt output to console
 - Use buffer read apt output (closes: #25882)
 - Add support for debug script
+- Do not show statistics if it is no additional packages to install
 
 * Mon Sep 20 2010 Andrey Cherepanov <cas@altlinux.org> 1.0.0-alt2
 - clear spec
