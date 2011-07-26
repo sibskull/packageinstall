@@ -17,7 +17,7 @@
     <message>
         <location filename="aptcommit.cpp" line="82"/>
         <source>&amp;#9658; installed: %1&lt;br&gt;</source>
-        <translation>&amp;#9658; будет устанавлено: %1&lt;br&gt;</translation>
+        <translation>&amp;#9658; будет установлено: %1&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="aptcommit.cpp" line="83"/>
@@ -149,7 +149,7 @@ Check output log.</source>
     <message>
         <location filename="dialog.cpp" line="216"/>
         <source>Wrong package name</source>
-        <translation>Невереное имя пакета</translation>
+        <translation>Неверное имя пакета</translation>
     </message>
     <message>
         <location filename="dialog.cpp" line="217"/>
