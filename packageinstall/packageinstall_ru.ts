@@ -4,38 +4,38 @@
 <context>
     <name>AptCommit</name>
     <message>
-        <location filename="aptcommit.cpp" line="79"/>
+        <location filename="aptcommit.cpp" line="88"/>
         <source>&lt;p&gt;&lt;b&gt;Processed packages:&lt;/b&gt;&lt;/p&gt;
 </source>
         <translation>&lt;p&gt;&lt;b&gt;Обрабатываемые пакеты:&lt;/b&gt;&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="aptcommit.cpp" line="81"/>
+        <location filename="aptcommit.cpp" line="90"/>
         <source>&amp;#9658; upgraded: %1&lt;br&gt;</source>
         <translation>&amp;#9658; будет обновлено: %1&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="aptcommit.cpp" line="82"/>
+        <location filename="aptcommit.cpp" line="91"/>
         <source>&amp;#9658; installed: %1&lt;br&gt;</source>
         <translation>&amp;#9658; будет установлено: %1&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="aptcommit.cpp" line="83"/>
+        <location filename="aptcommit.cpp" line="92"/>
         <source>&amp;#9658; removed: %1&lt;br&gt;</source>
         <translation>&amp;#9658; будет удалено: %1&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="aptcommit.cpp" line="84"/>
+        <location filename="aptcommit.cpp" line="93"/>
         <source>&amp;#9658; kept: %1&lt;br&gt;</source>
         <translation>&amp;#9658; будет оставлено без изменений: %1&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="aptcommit.cpp" line="86"/>
+        <location filename="aptcommit.cpp" line="95"/>
         <source>&lt;br&gt;Do you want to install this packages?</source>
         <translation>&lt;br&gt;Установить эти пакеты?</translation>
     </message>
     <message>
-        <location filename="aptcommit.cpp" line="96"/>
+        <location filename="aptcommit.cpp" line="100"/>
         <source>&lt;p&gt;&lt;b&gt;Packages to be installed:&lt;/b&gt;&lt;/p&gt;</source>
         <oldsource>
 Packages to be upgraded:
@@ -44,7 +44,7 @@ Packages to be upgraded:
 </translation>
     </message>
     <message>
-        <location filename="aptcommit.cpp" line="100"/>
+        <location filename="aptcommit.cpp" line="104"/>
         <source>&lt;p&gt;&lt;b&gt;Packages to be upgraded:&lt;/b&gt;&lt;/p&gt;</source>
         <oldsource>
 Packages to be removed:
@@ -53,7 +53,7 @@ Packages to be removed:
 </translation>
     </message>
     <message>
-        <location filename="aptcommit.cpp" line="104"/>
+        <location filename="aptcommit.cpp" line="108"/>
         <source>&lt;p&gt;&lt;b&gt;Packages to be removed:&lt;/b&gt;&lt;/p&gt;</source>
         <oldsource>
 Packages to be kept back:
@@ -62,28 +62,28 @@ Packages to be kept back:
 </translation>
     </message>
     <message>
-        <location filename="aptcommit.cpp" line="108"/>
+        <location filename="aptcommit.cpp" line="112"/>
         <source>&lt;p&gt;&lt;b&gt;Packages to be kept back:&lt;/b&gt;&lt;/p&gt;</source>
         <translation>&lt;p&gt;&lt;b&gt;Пакеты, которые будут оставлены без изменений:&lt;/b&gt;&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="aptcommit.cpp" line="118"/>
+        <location filename="aptcommit.cpp" line="122"/>
         <source>&lt;b&gt;Nothing to install.&lt;/b&gt;&lt;br&gt;There are newest version of packages.</source>
         <translation>&lt;b&gt;Нечего устанавливать.&lt;/b&gt;&lt;br&gt;Установлены последние версии пакетов.</translation>
     </message>
     <message>
-        <location filename="aptcommit.cpp" line="130"/>
-        <location filename="aptcommit.cpp" line="174"/>
+        <location filename="aptcommit.cpp" line="134"/>
+        <location filename="aptcommit.cpp" line="178"/>
         <source>Preparing...</source>
         <translation>Подготовка к установке...</translation>
     </message>
     <message>
-        <location filename="aptcommit.cpp" line="139"/>
+        <location filename="aptcommit.cpp" line="143"/>
         <source>Installation is finished successful</source>
         <translation>Установка завершена успешно</translation>
     </message>
     <message>
-        <location filename="aptcommit.cpp" line="176"/>
+        <location filename="aptcommit.cpp" line="180"/>
         <source>Installing package...</source>
         <translation>Установка пакета...</translation>
     </message>
@@ -119,59 +119,64 @@ Install this program.</source>
     </message>
     <message>
         <location filename="dialog.cpp" line="155"/>
+        <source>Installation is finished successful</source>
+        <translation>Установка завершена успешно</translation>
+    </message>
+    <message>
+        <location filename="dialog.cpp" line="157"/>
         <source>&amp;Exit</source>
         <translation>В&amp;ыход</translation>
     </message>
     <message>
-        <location filename="dialog.cpp" line="206"/>
+        <location filename="dialog.cpp" line="209"/>
         <source>Unsufficient privileges</source>
         <translation>Недостаточно привилегий</translation>
     </message>
     <message>
-        <location filename="dialog.cpp" line="207"/>
+        <location filename="dialog.cpp" line="210"/>
         <source>Program should be run with superuser privileges.
 Check your rights and program installation.</source>
         <translation>Программа должна быть запущена с привилегиями
 суперпользователя (root). Проверьте права доступа.</translation>
     </message>
     <message>
-        <location filename="dialog.cpp" line="211"/>
+        <location filename="dialog.cpp" line="214"/>
         <source>Installation error</source>
         <translation>Ошибка установки</translation>
     </message>
     <message>
-        <location filename="dialog.cpp" line="212"/>
+        <location filename="dialog.cpp" line="215"/>
         <source>Installation is failed.
 Check output log.</source>
         <translation>Во время установки произошла ошибка.
 Работа приложения будет завершена.</translation>
     </message>
     <message>
-        <location filename="dialog.cpp" line="216"/>
+        <location filename="dialog.cpp" line="219"/>
         <source>Wrong package name</source>
         <translation>Неверное имя пакета</translation>
     </message>
     <message>
-        <location filename="dialog.cpp" line="217"/>
+        <location filename="dialog.cpp" line="220"/>
         <source>Couldn&apos;t find package
 &apos;%1&apos;</source>
         <translation>Невозможно найти пакет
 «%1»</translation>
     </message>
     <message>
-        <location filename="dialog.cpp" line="229"/>
-        <location filename="dialog.cpp" line="237"/>
+        <location filename="dialog.cpp" line="232"/>
+        <location filename="dialog.cpp" line="240"/>
         <source>Hide &amp;details &lt;&lt;</source>
         <translation>Скрыть &amp;подробности &gt;&gt;</translation>
     </message>
     <message>
-        <location filename="dialog.cpp" line="232"/>
-        <location filename="dialog.cpp" line="241"/>
+        <location filename="dialog.cpp" line="235"/>
+        <location filename="dialog.cpp" line="244"/>
         <source>Show &amp;details &gt;&gt;</source>
         <translation>Показать &amp;подробности &gt;&gt;</translation>
     </message>
     <message>
-        <location filename="dialog.cpp" line="261"/>
+        <location filename="dialog.cpp" line="264"/>
         <source>Quit</source>
         <translation>Выход</translation>
     </message>
