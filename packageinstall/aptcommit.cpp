@@ -120,7 +120,7 @@ int AptCommit::appendString( QString str ) {
         }
 
         // Show dialog
-        setStatistics( statistics, details );
+		setStatistics( statistics, details, totalPackages );
 
     }
 

@@ -288,11 +288,16 @@ void Dialog::iSetStatus( QString stage, int percent, QString fileName ) {
 }
 
 
-void Dialog::iSetStatistics( QString text, QString details ) {
+void Dialog::iSetStatistics( QString text, QString details, int total ) {
     //qDebug( "iSetStatistics" );
     brief = text;
     description = details;
-    if( d ) {
+
+	// Check install without pause
+	if( total == packages->count() ) {
+		d->stack->setCurrentIndex( 0 );
+	} else if( d ) {
+		// Fill statistics into dialog
         d->bInstall->show();
         d->total->setHtml( brief );
         d->stack->setCurrentIndex( 1 );
@@ -309,9 +314,9 @@ void setStatus( QString stage, int percent, QString fileName ) {
 
 
 // Set statistics
-void setStatistics( QString text, QString details ) {
+void setStatistics( QString text, QString details, int total ) {
     if( dlg ) {
-        dlg->iSetStatistics( text, details );
+		dlg->iSetStatistics( text, details, total );
     }
 }
 

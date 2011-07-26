@@ -30,7 +30,7 @@
 
 class AptCommit;
 void setStatus( QString stage, int percent, QString fileName );
-void setStatistics( QString text, QString details );
+void setStatistics( QString text, QString details, int total );
 void processWrite( QString str );
 
 class Dialog : public QDialog
@@ -43,7 +43,7 @@ public:
     ~Dialog();
     void start();
     void iSetStatus( QString stage, int percent, QString fileName );
-    void iSetStatistics( QString text, QString details );
+	void iSetStatistics( QString text, QString details, int total );
     QProcess *process;
 
 private:
