@@ -76,6 +76,15 @@ int AptCommit::appendString( QString str ) {
     //if( str.startsWith( "Do you want to continue? [Y/n]" ) ) {
     if( str.contains( "not upgraded." ) ) {
 
+		// Sorts lists
+		upgraded.sort();
+		installed.sort();
+		removed.sort();
+		kept.sort();
+
+		// Keep only unique package to install
+		installed.removeDuplicates();
+
         QString statistics = tr( "<p><b>Processed packages:</b></p>\n" );
         // Show only non-empty categories one per line
         if( upgraded.count() > 0 )  statistics.append( tr( "&#9658; upgraded: %1<br>" ).arg( upgraded.count() ) );
@@ -86,11 +95,6 @@ int AptCommit::appendString( QString str ) {
         statistics.append( tr( "<br>Do you want to install this packages?") );
 
         QString details("");
-
-        upgraded.sort();
-        installed.sort();
-        removed.sort();
-        kept.sort();
 
         if( installed.count() > 0 ) {
             details += tr("<p><b>Packages to be installed:</b></p>");
