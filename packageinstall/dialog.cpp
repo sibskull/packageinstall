@@ -152,7 +152,8 @@ void Dialog::processStop() {
     //qDebug( "processStop" );
 
     if( d ) {
-        d->bCancel->setText( tr("&Exit") );
+		d->bInstall->hide();
+		d->bCancel->setText( tr("&Exit") );
         state = 5;
     }
 }
