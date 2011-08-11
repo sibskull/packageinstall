@@ -1,6 +1,6 @@
 
 Name:		packageinstall
-Version:	1.1.0
+Version:	1.1.1
 Release:	alt0.M60P.1
 Summary:	GUI frontend for install packages using apt-get
 
@@ -45,8 +45,11 @@ install -pD -m640 %name.security %buildroot%_sysconfdir/security/console.apps/%n
 %config(noreplace) %_sysconfdir/security/console.apps/%name
 
 %changelog
-* Wed Jul 27 2011 Andrey Cherepanov <cas@altlinux.org> 1.1.0-alt0.M60P.1
+* Thu Aug 11 2011 Andrey Cherepanov <cas@altlinux.org> 1.1.1-alt0.M60P.1
 - Backport to p6 branch (new version)
+
+* Thu Aug 11 2011 Andrey Cherepanov <cas@altlinux.org> 1.1.1-alt1
+- Reset show details on show information
 
 * Tue Jul 26 2011 Andrey Cherepanov <cas@altlinux.org> 1.1.0-alt1
 - Complete rewrite UI
