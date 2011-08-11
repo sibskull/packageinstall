@@ -303,6 +303,7 @@ void Dialog::iSetStatistics( QString text, QString details, int total ) {
         d->bInstall->show();
         d->total->setHtml( brief );
         d->stack->setCurrentIndex( 1 );
+		d->bDetails->setText( tr("Show &details >>") );
     }
 }
 

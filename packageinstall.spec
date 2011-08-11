@@ -1,6 +1,6 @@
 
 Name:		packageinstall
-Version:	1.1.0
+Version:	1.1.1
 Release:	alt1
 Summary:	GUI frontend for install packages using apt-get
 
@@ -45,6 +45,9 @@ install -pD -m640 %name.security %buildroot%_sysconfdir/security/console.apps/%n
 %config(noreplace) %_sysconfdir/security/console.apps/%name
 
 %changelog
+* Thu Aug 11 2011 Andrey Cherepanov <cas@altlinux.org> 1.1.1-alt1
+- Reset show details on show information
+
 * Tue Jul 26 2011 Andrey Cherepanov <cas@altlinux.org> 1.1.0-alt1
 - Complete rewrite UI
 - Append statistics to main dialog
