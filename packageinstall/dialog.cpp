@@ -19,6 +19,7 @@
 
 #include <QtGui>
 #include <QProcess>
+#include <QMessageBox>
 #include <iostream>
 #include "dialog.h"
 
@@ -26,7 +27,7 @@
 
 static Dialog *dlg;
 
-Dialog::Dialog( QStringList *p, QWidget *parent, Qt::WFlags flags )
+Dialog::Dialog( QStringList *p, QWidget *parent, Qt::WindowFlags flags )
     : QDialog( parent, flags )
 {
     // Save package list

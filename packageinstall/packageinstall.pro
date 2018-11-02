@@ -1,3 +1,4 @@
+QT += widgets
 SOURCES += main.cpp \
     dialog.cpp \
     aptcommit.cpp
@@ -6,21 +7,20 @@ HEADERS += dialog.h \
 TEMPLATE = app
 TRANSLATIONS = packageinstall_ru.ts
 CONFIG -= debug
-CONFIG += release \
-    exceptions \
-    qt \
-    warn_on
+CONFIG += release
+QMAKE_CXXFLAGS += -pedantic
+
+DEFINES += DATADIR=\\\"/usr/share/apps/packageinstall/\\\"
+
 TARGET = packageinstall
-DESTDIR = $$(DESTDIR)
-PREFIX = $$(PREFIX)
-isEmpty( PREFIX ):PREFIX = /usr/local
-DATADIR = $$DESTDIR$$PREFIX/share/apps/packageinstall/
-DEFINES += DATADIR=\\\"$$PREFIX/share/apps/packageinstall/\\\"
-target.path = $$DESTDIR/$$PREFIX/bin/
+target.path = /usr/bin/
+
 translations.files = *.qm
-translations.path = $$DATADIR
+translations.path = /usr/share/apps/packageinstall
+
 icons.files = rpm-package.png
-icons.path = $$DATADIR
+icons.path = /usr/share/apps/packageinstall
+
 INSTALLS += target
 INSTALLS += translations
 INSTALLS += icons

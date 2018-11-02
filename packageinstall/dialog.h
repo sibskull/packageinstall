@@ -39,7 +39,7 @@ class Dialog : public QDialog
     Q_OBJECT
 
 public:
-    Dialog( QStringList *p, QWidget *parent = 0, Qt::WFlags flags = 0 );
+    Dialog( QStringList *p, QWidget *parent = 0, Qt::WindowFlags flags = 0 );
     ~Dialog();
     void start();
     void iSetStatus( QString stage, int percent, QString fileName );

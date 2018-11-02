@@ -31,7 +31,7 @@ int main( int argc, char *argv[] ) {
     // Load localization
     QTranslator translator;
     QString locale = QLocale::system().name();
-    translator.load( QString( "qt_" ).append( locale.split( "_" ).at( 0 ) ), QLibraryInfo::location( QLibraryInfo::TranslationsPath ) );
+    translator.load( QString( "qtbase_" ).append( locale.split( "_" ).at( 0 ) ), QLibraryInfo::location( QLibraryInfo::TranslationsPath ) );
     translator.load( QString( DATADIR ) + QString( APPNAME ) + QString ( "_" ) + locale );
     app.installTranslator( &translator );
 
