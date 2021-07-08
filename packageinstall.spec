@@ -1,18 +1,17 @@
+Name:	 packageinstall
+Version: 1.1.2
+Release: alt1
+Summary: GUI frontend for install packages using apt-get
 
-Name:		packageinstall
-Version:	1.1.2
-Release:	alt1
-Summary:	GUI frontend for install packages using apt-get
+License: GPL-3.0+
+Group:   System/Configuration/Packaging
+URL:     http://www.altlinux.org/PackageInstall
 
-License:	GPL
-Group:		System/Configuration/Packaging
-URL:		http://www.altlinux.org/PackageInstall
-
-Packager:   	Andrey Cherepanov <cas@altlinux.org>
+Packager: Andrey Cherepanov <cas@altlinux.org>
 
 Requires: apt consolehelper
 
-Source0:	%name-%version.tar.gz
+Source0: %name-%version.tar
 
 BuildRequires(pre): libpam-devel
 BuildRequires: gcc-c++
@@ -23,9 +22,9 @@ This application is GUI frontend for install package(s) using apt-get.
 
 %prep
 %setup -q
-%qmake_qt5 PREFIX=%_prefix %name.pro
 
 %build
+%qmake_qt5 PREFIX=%_prefix %name.pro
 %make_build
 lrelease-qt5 %name.pro
 
