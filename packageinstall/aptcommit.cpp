@@ -54,20 +54,20 @@ int AptCommit::appendString( QString str ) {
     if( str[0] == ' ' ) {
         pkgs = str.split( ' ', QString::SkipEmptyParts );
         switch( stage ) {
-        case Upgraded:
-            upgraded << pkgs;
-            break;
-        case Installed:
-            installed << pkgs;
-            break;
-        case Removed:
-            removed << pkgs;
-            break;
-        case Kept:
-            kept << pkgs;
-            break;
-        default:
-            break;
+            case Upgraded:
+                upgraded << pkgs;
+                break;
+            case Installed:
+                installed << pkgs;
+                break;
+            case Removed:
+                removed << pkgs;
+                break;
+            case Kept:
+                kept << pkgs;
+                break;
+            default:
+                break;
         }
         return 0;
     }
@@ -76,14 +76,14 @@ int AptCommit::appendString( QString str ) {
     //if( str.startsWith( "Do you want to continue? [Y/n]" ) ) {
     if( str.contains( "not upgraded." ) ) {
 
-		// Sorts lists
-		upgraded.sort();
-		installed.sort();
-		removed.sort();
-		kept.sort();
+        // Sorts lists
+        upgraded.sort();
+        installed.sort();
+        removed.sort();
+        kept.sort();
 
-		// Keep only unique package to install
-		installed.removeDuplicates();
+        // Keep only unique package to install
+        installed.removeDuplicates();
 
         QString statistics = tr( "<p><b>Processed packages:</b></p>\n" );
         // Show only non-empty categories one per line
@@ -124,7 +124,7 @@ int AptCommit::appendString( QString str ) {
         }
 
         // Show dialog
-		setStatistics( statistics, details, totalPackages );
+        setStatistics( statistics, details, totalPackages );
 
     }
 
@@ -159,7 +159,7 @@ int AptCommit::appendString( QString str ) {
 
         // Lookup in package names
         int pos = all.indexOf( QRegExp( QString("^") + currentFile ) );
-		//qDebug() << currentFile << pos << all;
+        //qDebug() << currentFile << pos << all;
 
         if( pos > -1 ) {
             currentFile = all.at( pos );
@@ -177,9 +177,9 @@ int AptCommit::appendString( QString str ) {
         if( count < 50 ) { // Preparing
             setStatus( tr("Preparing..."), (int)( ( 100 * count ) / total ), currentFile );
         } else { // Post actions
-			setStatus( tr("Installing package..."), (int)( ( 100 * count ) / total ), currentFile );
+            setStatus( tr("Installing package..."), (int)( ( 100 * count ) / total ), currentFile );
         }
-	
+
         count += str.count( "#" );
         return 0;
     }

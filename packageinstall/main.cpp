@@ -43,9 +43,9 @@ int main( int argc, char *argv[] ) {
     // Show help
     if( app.arguments().contains( "--help" ) || app.arguments().contains( "-h" ) ) {
         std::cout << qPrintable( QObject::tr( "%1 %2. Program for install packages from APT repositories",
-                                             "%1 is application name, %2 is application version").arg( APPNAME ).arg( APPVERSION ) ) << std::endl;
+                    "%1 is application name, %2 is application version").arg( APPNAME ).arg( APPVERSION ) ) << std::endl;
         std::cout << qPrintable( QObject::tr( "Usage: %1 [option] package...",
-                                             "%1 is application name" ).arg( APPNAME ) )<< std::endl << std::endl;
+                    "%1 is application name" ).arg( APPNAME ) )<< std::endl << std::endl;
         std::cout << qPrintable( QObject::tr( "Available options:" ) ) << std::endl;
         std::cout << qPrintable( QObject::tr( "    -h         This help" ) ) << std::endl;
         std::cout << qPrintable( QObject::tr( "    --version  Version information" ) ) << std::endl;
@@ -55,7 +55,7 @@ int main( int argc, char *argv[] ) {
     // Print version information
     if( app.arguments().contains( "--version" ) ) {
         std::cout << qPrintable( QObject::tr( "%1 %2",
-                                             "%1 is application name, %2 is application version").arg( APPNAME ).arg( APPVERSION ) ) << std::endl;
+                    "%1 is application name, %2 is application version").arg( APPNAME ).arg( APPVERSION ) ) << std::endl;
         exit( 0 );
     }
 
@@ -68,11 +68,6 @@ int main( int argc, char *argv[] ) {
     }
 
     // Main widget
-    /*Dialog *dialog = new Dialog( names );
-    dialog->show();
-
-    // Run process
-    dialog->start();*/
     Dialog d( names );
     d.show();
     d.start();

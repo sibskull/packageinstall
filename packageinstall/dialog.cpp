@@ -46,8 +46,8 @@ Dialog::Dialog( QStringList *p, QWidget *parent, Qt::WindowFlags flags )
 
     // Adapt UI
     d->title->setText( ( packages->count() == 0 ?
-     tr("<b>Updating system</b><br>Please, wait...") :
-     tr("<b>Installing packages</b><br>Please, wait...") ) );
+                tr("<b>Updating system</b><br>Please, wait...") :
+                tr("<b>Installing packages</b><br>Please, wait...") ) );
 
     d->stack->setCurrentIndex( 0 );
     d->bInstall->hide();
@@ -153,9 +153,9 @@ void Dialog::processStop() {
     //qDebug( "processStop" );
 
     if( d ) {
-		setStatus( tr("Installation is finished successful"), 100, QString( "" ) );
-		d->bInstall->hide();
-		d->bCancel->setText( tr("&Exit") );
+        setStatus( tr("Installation is finished successful"), 100, QString( "" ) );
+        d->bInstall->hide();
+        d->bCancel->setText( tr("&Exit") );
         state = 5;
     }
 }
@@ -163,32 +163,32 @@ void Dialog::processStop() {
 // Read from process output
 void Dialog::readOutput() {
 
-	int p;
-	QString str, line, b;
-	QByteArray ba;
+    int p;
+    QString str, line, b;
+    QByteArray ba;
 
     process->setReadChannel( QProcess::StandardOutput );
 
-	// Read all
-	ba = process->readAll();
-	b = QString( ba );
+    // Read all
+    ba = process->readAll();
+    b = QString( ba );
 
-	// Add to buffer
-	str = tail.append( b );
+    // Add to buffer
+    str = tail.append( b );
 
-	//qDebug() << QString( "%1 %3 ==%2==").arg( b.size() ).arg( b ).arg( str.indexOf( QChar( '\n' ) ) );
+    //qDebug() << QString( "%1 %3 ==%2==").arg( b.size() ).arg( b ).arg( str.indexOf( QChar( '\n' ) ) );
 
-	// Split output to lines
-	while( ( p = str.indexOf( QChar( '\n' ) ) ) > 0 ) {
-		line = str.left( p );
-		str = str.mid( p + 1 );
+    // Split output to lines
+    while( ( p = str.indexOf( QChar( '\n' ) ) ) > 0 ) {
+        line = str.left( p );
+        str = str.mid( p + 1 );
 
-		if( d ) {
-			d->log->append( line );
-		}
-		commit.appendString( line );
-	}
-	tail = str;
+        if( d ) {
+            d->log->append( line );
+        }
+        commit.appendString( line );
+    }
+    tail = str;
 }
 
 
@@ -208,17 +208,17 @@ void Dialog::readError() {
         if( ! str.isEmpty() ) {
             if( str.startsWith( "E: Unable to write to /var/cache/apt/" ) ) {
                 QMessageBox::critical( this, tr("Unsufficient privileges"),
-                                      tr("Program should be run with superuser privileges.\nCheck your rights and program installation.") );
+                        tr("Program should be run with superuser privileges.\nCheck your rights and program installation.") );
                 close();
             }
             if( str.startsWith( "E: Error while running transaction" ) ) {
                 QMessageBox::critical( this, tr("Installation error"),
-                                      tr("Installation is failed.\nCheck output log.") );
+                        tr("Installation is failed.\nCheck output log.") );
                 close();
             }
             if( str.startsWith( "E: Couldn't find package" ) ) {
                 QMessageBox::critical( this, tr("Wrong package name"),
-                                      tr("Couldn't find package\n'%1'").arg( str.simplified().right( str.length() - 26 ) ) );
+                        tr("Couldn't find package\n'%1'").arg( str.simplified().right( str.length() - 26 ) ) );
                 close();
             }
         }
@@ -296,15 +296,15 @@ void Dialog::iSetStatistics( QString text, QString details, int total ) {
     brief = text;
     description = details;
 
-	// Check install without pause
-	if( total == packages->count() ) {
-		d->stack->setCurrentIndex( 0 );
-	} else if( d ) {
-		// Fill statistics into dialog
+    // Check install without pause
+    if( total == packages->count() ) {
+        d->stack->setCurrentIndex( 0 );
+    } else if( d ) {
+        // Fill statistics into dialog
         d->bInstall->show();
         d->total->setHtml( brief );
         d->stack->setCurrentIndex( 1 );
-		d->bDetails->setText( tr("Show &details >>") );
+        d->bDetails->setText( tr("Show &details >>") );
     }
 }
 
@@ -320,7 +320,7 @@ void setStatus( QString stage, int percent, QString fileName ) {
 // Set statistics
 void setStatistics( QString text, QString details, int total ) {
     if( dlg ) {
-		dlg->iSetStatistics( text, details, total );
+        dlg->iSetStatistics( text, details, total );
     }
 }
 
