@@ -159,6 +159,9 @@ void Dialog::processStop() {
             setStatus( tr("<span style=\"color:red;\">An error occurred during installation</span>"), 100, QString( "" ) );
         }
         d->bInstall->hide();
+        d->title->setText( ( packages->count() == 0 ?
+                tr("<b>Updating system</b><br>&nbsp;") :
+                tr("<b>Installing packages</b><br>&nbsp;") ) );
         d->bCancel->setText( tr("&Exit") );
         state = 5;
     }
