@@ -11,8 +11,6 @@ CONFIG += release
 QMAKE_CXXFLAGS += -pedantic
 
 DEFINES += DATADIR=\\\"/usr/share/apps/packageinstall/\\\"
-# Generate code for work with simulation script
-#DEFINES += DEBUG
 
 TARGET = packageinstall
 target.path = /usr/bin/

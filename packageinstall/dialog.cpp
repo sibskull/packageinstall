@@ -23,8 +23,6 @@
 #include <iostream>
 #include "dialog.h"
 
-//#define DEBUG
-
 static Dialog *dlg;
 
 Dialog::Dialog( QStringList *p, QWidget *parent, Qt::WindowFlags flags )
@@ -116,9 +114,6 @@ void Dialog::processStart() {
     QStringList args;
 
     QString programm = QString( "apt-get" );
-#ifdef DEBUG
-    programm = QString( "./apt-get-test" );
-#endif
 
     commit.packages = packages;
 
