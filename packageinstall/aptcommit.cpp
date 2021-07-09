@@ -113,14 +113,12 @@ int AptCommit::appendString( QString str ) {
             details += kept.join( " " );
         }
 
-        int ret;
         all << installed << upgraded;
         all.sort();
         totalPackages = all.count();
 
         if( totalPackages == 0 ) {
             statistics = tr("<b>Nothing to install.</b><br>There are newest version of packages.");
-            ret = 0;
         }
 
         // Show dialog
