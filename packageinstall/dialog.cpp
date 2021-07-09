@@ -115,10 +115,6 @@ void Dialog::processStart() {
 
     QStringList args;
 
-    // Test install
-    args << "-f";
-
-
     QString programm = QString( "apt-get" );
 #ifdef DEBUG
     programm = QString( "./apt-get-test" );
@@ -130,7 +126,7 @@ void Dialog::processStart() {
         // On empty list of packages update all system
         args << "dist-upgrade";
     } else {
-        // Copy packages
+        // Copy package names from command line
         args << "install";
         for (int i = 0; i < packages->size(); ++i) {
             args << packages->at(i);
@@ -146,7 +142,7 @@ void Dialog::processStart() {
     }
 
     // Inform about first stage
-    setStatus( tr("Check package requirements..."), 0, "" );
+    setStatus( tr("Preparing for install: check for updates and download packages..."), 0, "" );
 
 }
 
