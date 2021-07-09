@@ -26,7 +26,7 @@ class AptCommit : public QObject
 
     Q_OBJECT
 
-    enum Type { Unknown, Upgraded, Installed, Removed, Kept, Preparing, Progress };
+    enum Type { Unknown, Upgraded, Installed, Removed, Kept, Preparing, Progress, Cleaning };
 
 public:
     AptCommit();

@@ -130,9 +130,17 @@ int AptCommit::appendString( QString str ) {
     if( str.startsWith( "Preparing..." ) ) {
         stage = Preparing;
         setStatus( tr("Preparing..."), 0, QString( "" ) );
-        count = 0;
-        total = ( totalPackages + 1 ) * 50;
+        count = str.count( "#" );
+        // +2 because first line during prepare contains 100 symbols and we need to show gap to 100% for postinstall actions and triggers
+        total = ( totalPackages + 2 ) * 100;
         currentFile = QString( "" );
+        return 0;
+    }
+
+    // Cleaning up / removing...
+    if( str.startsWith( "Cleaning up / removing..." ) ) {
+        setStatus( tr("Cleaning up / removing packages"), 99, QString( "" ) );
+        stage = Cleaning;
         return 0;
     }
 
@@ -148,16 +156,27 @@ int AptCommit::appendString( QString str ) {
     }
 
     // Read packages
+    count += str.count( "#" );
     if( stage == Preparing && str.length() != str.count( "#" ) && totalPackages > -1 ) {
         currentFile = str;
 
         // Process package name
-        currentFile.replace( QRegExp( "^([0-9]*:)?([^#\\s]*)[\\s]*#*$" ), "\\2" );
-        currentFile = currentFile.trimmed();
+        currentFile.replace( QRegExp( "^[0-9]*: ([^#\\s]*)[\\s]*#*.*$" ), "\\1" );
+        currentFile = currentFile.trimmed(); // should be full package name with version and release (like LibreOffice-still-qt5-7.0.6.2-alt1)
+
+        // Remove version and release from package name (remove last two parts)
+        QStringList nameParts = currentFile.split('-');
+        if( nameParts.size() > 2 ) {
+            nameParts.removeLast(); // remove release
+            nameParts.removeLast(); // remove version
+        }
+        currentFile = nameParts.join('-');
+
+        //std::cout << qPrintable(currentFile) << std::endl;
 
         // Lookup in package names
         int pos = all.indexOf( QRegExp( QString("^") + currentFile ) );
-        //qDebug() << currentFile << pos << all;
+        //std::cout << "debug: lookup " << qPrintable(currentFile) << " " << pos << std::endl;
 
         if( pos > -1 ) {
             currentFile = all.at( pos );
@@ -166,19 +185,17 @@ int AptCommit::appendString( QString str ) {
             //}
             currentFile.clear();
         }
-        //qDebug() << totalPackages << (int)( ( 100 * count ) / total ) << count << total;
+        //std::cout << "debug: totalPackages: " << totalPackages << " %: " << (int)( ( 100 * count ) / total ) << " count: " << count << " total: " << total << std::endl;
         totalPackages--;
     }
 
     // Progress
     if( stage == Preparing ) {
-        if( count < 50 ) { // Preparing
+        if( count < 100 ) { // Preparing
             setStatus( tr("Preparing..."), (int)( ( 100 * count ) / total ), currentFile );
         } else { // Post actions
             setStatus( tr("Installing package..."), (int)( ( 100 * count ) / total ), currentFile );
         }
-
-        count += str.count( "#" );
         return 0;
     }
 
