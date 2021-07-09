@@ -1,28 +1,17 @@
-
-=================================
-
 packageinstall
-
-Graphical application for install 
-packages using apt-get
-
-Version 1.0.0
-
-=================================
+==============
 
 This application is GUI frontend for install package(s) using apt-get.
 
 REQUIRES
 --------
-- Qt 4.x
-- rpm
-
+- Qt 5.x
+- apt
 
 CONTACTS
 --------
 Web: http://www.altlinux.org/PackageInstall
 Sources: http://git.altlinux.org/people/cas/packages/?p=packageinstall.git;a=summary
-
 
 LICENSE
 -------
@@ -31,7 +20,6 @@ it under the terms of the GNU General Public License as published by
 the Free Software Foundation; either version 3 of the License, or
 (at your option) any later version.
 
-
 AUTHORS
 -------
-Copyright (c) 2009 by Andrey Cherepanov <cas@altlinux.org>
+Copyright (c) 2009,2021 by Andrey Cherepanov <cas@altlinux.org>
