@@ -36,6 +36,7 @@ Dialog::Dialog( QStringList *p, QWidget *parent, Qt::WindowFlags flags )
     // State
     state = 0;
     briefed = true;
+    exitStatus = 0;
 
     // Make dialog available system wide
     dlg = this;
@@ -74,19 +75,21 @@ Dialog::Dialog( QStringList *p, QWidget *parent, Qt::WindowFlags flags )
 
 Dialog::~Dialog()
 {
-    if (process->state() == QProcess::Running) {
+    if (process->state() == QProcess::Running ) {
         process->kill();
     }
+    QCoreApplication::exit( exitStatus );
 }
 
 
 // Terminate process
 void Dialog::windowClose() {
     ////qDebug( "windowClose" );
-    if (process->state() == QProcess::Running) {
+    if (process->state() == QProcess::Running ) {
         process->kill();
     }
     //close();
+    QCoreApplication::exit( exitStatus );
 }
 
 
@@ -153,7 +156,14 @@ void Dialog::processStop() {
     //qDebug( "processStop" );
 
     if( d ) {
-        setStatus( tr("Installation is finished successful"), 100, QString( "" ) );
+        exitStatus = process->exitCode();
+        if( exitStatus == 0 ) {
+            // Success
+            setStatus( tr("Installation is finished successful"), 100, QString( "" ) );
+        } else {
+            // Error
+            setStatus( tr("<span style=\"color:red;\">An error occurred during installation</span>"), 100, QString( "" ) );
+        }
         d->bInstall->hide();
         d->bCancel->setText( tr("&Exit") );
         state = 5;
@@ -271,11 +281,11 @@ void Dialog::cancelPressed() {
 
         if( ret == QMessageBox::Yes ) {
             windowClose();
-            exit ( 1 );
+            QCoreApplication::exit( 1 );
         }
     } else {
         windowClose();
-        exit( 0 );
+        QCoreApplication::exit( exitStatus );
     }
 }
 

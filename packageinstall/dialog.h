@@ -54,6 +54,7 @@ private:
     bool briefed;
     int state;
     QString brief;
+    int exitStatus;
     QString description;
 
 private:
