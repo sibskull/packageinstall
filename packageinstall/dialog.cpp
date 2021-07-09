@@ -111,10 +111,13 @@ void Dialog::processStart() {
         return;
     }
 
+    // Update apt cache before installation
+    QProcess *updateCache = new QProcess( this );
+    updateCache->start( "apt-get", { "update" } );
+
+    // Run installation
     QStringList args;
-
     QString programm = QString( "apt-get" );
-
     commit.packages = packages;
 
     if( packages->count() == 0 ) {
