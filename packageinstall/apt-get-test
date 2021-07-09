@@ -1,87 +1,20 @@
 #!/bin/sh
 
-# Script for test pacakgeinstall. It simulates apt-get dist-upgrade behaviour
+# Script for test packageinstall. It simulates apt-get dist-upgrade behaviour
 
 cat << EOF
 Reading Package Lists... Done
 Building Dependency Tree... Done
 Calculating Upgrade... Done
 The following packages will be upgraded
-  GConf GConf-sanity-check NetworkManager-gnome Thunar alterator-browser-qt alterator-lookout alterator-net-eth alterator-pkg alterator-vm altlinux-freedesktop-menu-common
-  altlinux-freedesktop-menu-generic altlinux-freedesktop-menu-gnome altlinux-freedesktop-menu-kde3 altlinux-freedesktop-menu-kde4 altlinux-freedesktop-menu-lxde
-  altlinux-freedesktop-menu-nested-menu altlinux-freedesktop-menu-shallow-menu altlinux-freedesktop-menu-xfce apache2 apache2-base apache2-cgi-bin apache2-cgi-bin-printenv
-  apache2-cgi-bin-test-cgi apache2-common apache2-datadirs apache2-html apache2-httpd-prefork apache2-httpd-worker apache2-icons apt-conf-branch cups find-static findutils
-  fonts-ttf-java-1.6.0-sun fusion-icon gdb gettext gettext-tools git-core git-cvs git-gui git-svn gitk glade3 glibc glibc-core glibc-devel glibc-gconv-modules glibc-locales
-  glibc-nss glibc-preinstall glibc-pthread glibc-timezones glibc-utils glxgears glxinfo grep gst-plugins-bad gst-plugins-base gstreamer gstreamer-devel gtk-builder-convert
-  gtk-update-icon-cache guile-evms icon-theme-oxygen iconv installer-common-stage2 java-1.6.0-sun java-1.6.0-sun-devel java-sun-desktop kde4-i18n-ru kde4-konsole
-  kde4-menu-resources kde4accessibility kde4accessibility-common kde4accessibility-core kde4accessibility-jovie kde4accessibility-kmag kde4accessibility-kmousetool
-  kde4accessibility-kmouth kde4admin kde4admin-common kde4admin-kcron kde4admin-ksystemlog kde4admin-print kde4artwork-color-schemes kde4artwork-common kde4artwork-desktopthemes
-  kde4artwork-icon-theme-nuvola kde4artwork-screensavers kde4artwork-screensavers3d kde4artwork-sounds kde4artwork-styles-phase-widgets kde4artwork-xscreensaver
-  kde4artwork-xscreensaver3d kde4base kde4base-common kde4base-dolphin kde4base-kdepasswd kde4base-kdialog kde4base-keditbookmarks kde4base-kfind kde4base-konqueror
-  kde4base-kwrite kde4base-nsplugins kde4base-plasma-applets kde4base-runtime kde4base-runtime-common kde4base-runtime-core kde4base-workspace kde4base-workspace-common
-  kde4base-workspace-core kde4base-workspace-cursors kde4base-workspace-kdm kde4base-workspace-libs kde4base-workspace-wallpapers kde4bindings-common kde4edu kde4edu-blinken
-  kde4edu-cantor kde4edu-common kde4edu-core kde4edu-kalgebra kde4edu-kalzium kde4edu-kanagram kde4edu-kbruch kde4edu-kgeography kde4edu-khangman kde4edu-kig kde4edu-kiten
-  kde4edu-klettres kde4edu-kmplot kde4edu-kstars kde4edu-ktouch kde4edu-kturtle kde4edu-kwordquiz kde4edu-marble kde4edu-parley kde4edu-rocs kde4edu-step kde4games
-  kde4games-bomber kde4games-bovo kde4games-common kde4games-core kde4games-granatier kde4games-kajongg kde4games-kapman kde4games-katomic kde4games-kbattleship
-  kde4games-kblackbox kde4games-kblocks kde4games-kbounce kde4games-kbreakout kde4games-kdiamond kde4games-kfourinline kde4games-kgoldrunner kde4games-kigo kde4games-killbots
-  kde4games-kiriki kde4games-kjumpingcube kde4games-klines kde4games-kmahjongg kde4games-kmines kde4games-knetwalk kde4games-kolf kde4games-kollision kde4games-konquest
-  kde4games-kpat kde4games-kreversi kde4games-ksame kde4games-kshisen kde4games-ksirk kde4games-kspaceduel kde4games-ksquares kde4games-ksudoku kde4games-ktron
-  kde4games-ktuberling kde4games-kubrick kde4games-lskat kde4games-palapeli kde4graphics kde4graphics-common kde4graphics-core kde4graphics-gwenview kde4graphics-kamera
-  kde4graphics-kcolorchooser kde4graphics-kgamma kde4graphics-kolourpaint kde4graphics-kruler kde4graphics-ksnapshot kde4graphics-okular kde4libs kde4libs-devel kde4multimedia
-  kde4multimedia-audiocd kde4multimedia-common kde4multimedia-core kde4multimedia-dragonplayer kde4multimedia-juk kde4multimedia-kmix kde4multimedia-kscd
-  kde4multimedia-videothumbnail kde4network kde4network-common kde4network-core kde4network-filesharing kde4network-kdnssd kde4network-kget kde4network-kopete kde4network-kppp
-  kde4network-krdc kde4network-krfb kde4pim kde4pim-akonadi kde4pim-akregator kde4pim-blogilo kde4pim-common kde4pim-core kde4pim-devel kde4pim-kaddressbook kde4pim-kalarm
-  kde4pim-kjots kde4pim-kleopatra kde4pim-kmail kde4pim-kmailcvt kde4pim-knode kde4pim-knotes kde4pim-kontact kde4pim-korganizer kde4pim-kresources kde4pim-ksendemail
-  kde4pim-ktimetracker kde4pim-plugins kde4pim-wizards kde4pimlibs kde4plasma-addons kde4plasma-addons-common kde4sdk-cervisia kde4sdk-common kde4sdk-core kde4sdk-kapptemplate
-  kde4sdk-kate kde4sdk-kcachegrind kde4sdk-kmtrace kde4sdk-kompare kde4sdk-kuiviewer kde4sdk-libs kde4sdk-okteta kde4sdk-po2xml kde4sdk-scripts kde4sdk-strigi-analyzer
-  kde4sdk-umbrello kde4toys kde4toys-amor kde4toys-common kde4toys-kteatime kde4toys-ktux kde4utils kde4utils-ark kde4utils-common kde4utils-filelight kde4utils-kcalc
-  kde4utils-kcharselect kde4utils-kdf kde4utils-kfloppy kde4utils-kgpg kde4utils-kremotecontrol kde4utils-ktimer kde4utils-kwallet kde4utils-print kde4utils-superkaramba
-  kde4utils-sweeper kernel-headers-modules-std-def kernel-headers-std-def koffice koffice-common koffice-core koffice-karbon koffice-kchart koffice-kexi koffice-kformula
-  koffice-kplato koffice-kpresenter koffice-krita koffice-kspread koffice-kword koffice-okular-odp ldap-user-tools libGConf libGL libGL-devel libGLU libGLU-devel libOSMesa
-  libThunar libakonadi4-kcal_next libakonadi4-xml libakonadi4_next libakregatorinterfaces4 libakregatorprivate4 libanalitza4 libanalitzagui4 libass libatk libatk-devel
-  libatk-locales libaudiocdplugins4 libcantor4_config libcantorlibs4 libchartshapelib libclamav libcompizconfig libcompoundviewer4 libcups libdolphinprivate4 libdrm libdrm-devel
-  libevent2 libevms libflake8 libgadu libgail libgdk-pixbuf libgdk-pixbuf-devel libgdk-pixbuf-locales libgdk-pixbuf-xlib libgst-plugins libgstreamer libgtk+2 libgtk+2-devel
-  libgtk+2-locales libgudev libgwenview4 libgwsoap4 libiris4_ksirk libkabc4_groupdav libkabc4_slox libkabcgroupwise4 libkabckolab4 libkaddressbookprivate4 libkalarm4_calendar
-  libkalarm4_resources libkarboncommon libkarbonui libkastencontrollers4 libkastencore4 libkastengui4 libkateinterfaces4 libkbookmarkmodel4_private libkcal4_groupdav
-  libkcal4_resourceblog libkcal4_resourceremote libkcal4_slox libkcalgroupwise4 libkcalkolab4 libkcardgame4 libkcddb4 libkcompactdisc4 libkdchart libkdcraw4 libkdcraw4-common
-  libkdecorations4 libkdeeduui4 libkdegames4 libkdepim4 libkdepim4-copy libkeduvocdocument4 libkephal4 libkerfuffle4 libkexicore libkexidatatable libkexidb libkexiextendedwidgets
-  libkexiformutils libkexiguiutils libkeximain libkeximigrate libkexirelationsview libkexiutils libkexiv24 libkexiv24-common libkfontinst4 libkfontinstui4 libkformdesigner
-  libkformulalib libkformulaprivate libkget4 libkggzgames4 libkggzmod4 libkggznet4 libkgroupwarebase4 libkgroupwaredav4 libkhotkeysprivate4 libkimpanelruntime4 libkipi4
-  libkipi4-common libkiten4 libkleo4 libkleopatraclientcore4 libkleopatraclientgui4 libkmahjongglib4 libkmailprivate4 libknodecommon4 libknoteskolab4 libkochart libkokross
-  libkolfprivate4 libkolourpaint4 libkomain libkompareinterface4 libkonq4 libkonqsidebarplugin4 libkonquerorprivate4 libkontactprivate4 libkoodf libkopageapp libkopete4
-  libkoplugin libkoproperty libkoreport libkorg4_stdprinting libkorganizer4_calendar libkorganizer4_core libkorganizer4_eventviewer libkorganizer4_interfaces
-  libkorganizerprivate4 libkotext libkowidgets libkowmf libkowv2 libkpgp4 libkplatokernel libkplatomodels libkplatoprivate libkplatoui libkplatoworkapp libkplatoworkfactory
-  libkpresenterprivate libkrdccore4 libkremotecontrol4 libkrfbprivate4 libkritaimage libkritalibbrush libkritalibpaintop libkritaui libksane4 libkscreensaver4 libksgrd4
-  libksieve4 libksignalplotter4 libkslox4 libkspreadcommon libkspreadodf libktexteditor4_codesnippets_core libkttsd4 libkwalletbackend4 libkwineffects4 libkwinnvidiahack4
-  libkwordexportfilters libkwordprivate libkworkspace4 liblancelot4 liblancelot4-datamodels liblsofui4 libmaildir4 libmarblewidget4 libmbox4 libmessagecore4 libmessagelist4
-  libmessageviewer4 libmimelib4 libmolletnetwork4 libmsooxml libnepomuksync4 liboktetacore4 liboktetagui4 liboktetakastencontrollers4 liboktetakastencore4 liboktetakastengui4
-  libokularcore4 liboxygenstyle4 libpala4 libpigmentcms libplasma4-geolocation-interface libplasma4_applet-system-monitor libplasma4_groupingcontainment libplasmaclock4
-  libplasmacomicprovidercore4 libplasmagenericshell4 libplasmapotdprovidercore4 libplasmaweather4 libplymouth libplymouth-graphics libpowerdevilcore4 libprocesscore4
-  libprocessui4 librocslib4 librtm4 libsatlib4 libscience4 libsigc++2 libsolidcontrol4 libsolidcontrolifaces4 libsuperkaramba4 libsystemsettingsview4 libtaskmanager4 libudev
-  libudev-devel libwavpack libweather4_ion libwordnet libxfce4panel libxfce4panel-devel libxfce4panel-devel-doc lsb lsb-core lsb-cxx lsb-desktop lsb-languages lsb-printing m4
-  mozilla-plugin-adobe-flash mozilla-plugin-java-1.6.0-sun nscd opera perl-Git plasma-applet-bball plasma-applet-binaryclock plasma-applet-blackboard plasma-applet-bookmarks
-  plasma-applet-bubblemon plasma-applet-calculator plasma-applet-charselect plasma-applet-comic plasma-applet-dict plasma-applet-eyes plasma-applet-fifteenpuzzle
-  plasma-applet-filewatcher plasma-applet-frame plasma-applet-fuzzy-clock plasma-applet-incomingmsg plasma-applet-kimpanel plasma-applet-knowledgebase plasma-applet-kolourpicker
-  plasma-applet-konqprofiles plasma-applet-konsoleprofiles plasma-applet-lancelot plasma-applet-leavenote plasma-applet-life plasma-applet-luna plasma-applet-magnifique
-  plasma-applet-mediaplayer plasma-applet-microblog plasma-applet-news plasma-applet-notes plasma-applet-nowplaying plasma-applet-opendesktop plasma-applet-paste
-  plasma-applet-pastebin plasma-applet-plasmaboard plasma-applet-previewer plasma-applet-qalculate plasma-applet-rssnow plasma-applet-rtm plasma-applet-showdashboard
-  plasma-applet-showdesktop plasma-applet-spellcheck plasma-applet-systemloadviewer plasma-applet-timer plasma-applet-unitconverter plasma-applet-weather
-  plasma-applet-weatherstation plasma-applet-webslice plasma-containment-griddesktop plasma-containment-groupingdesktop plasma-containment-groupingpanel plasma-dataengine-comic
-  plasma-dataengine-kdeobservatory plasma-dataengine-microblog plasma-dataengine-ocs plasma-dataengine-potd plasma-dataengine-rtm plasma-runner-audioplayercontrol
-  plasma-runner-browserhistory plasma-runner-charrunner plasma-runner-contacts plasma-runner-converter plasma-runner-datetime plasma-runner-events plasma-runner-katesessions
-  plasma-runner-konquerorsessions plasma-runner-konsolesessions plasma-runner-kopete plasma-runner-mediawiki plasma-runner-spellchecker plasma-wallpaper-mandelbrot
-  plasma-wallpaper-marble plasma-wallpaper-pattern plasma-wallpaper-virus plasma-wallpaper-weather plymouth plymouth-plugin-script plymouth-scripts python-module-fusion-icon-gtk
-  python-module-fusion-icon-qt4 python-module-kde4 qt-creator qt-creator-doc rp-pppoe-base rp-pppoe-client simple-ccsm stmpclean strace syslinux tango-icon-theme
-  thunar-volman-plugin tigervnc transmission transmission-cli transmission-common transmission-daemon transmission-gui-common transmission-qt transmission-remote udev udev-extras
-  udev-rule-generator udev-rules vixie-cron wavpack wordnet wordnet-dict xen-libs xfce-utils xfce4-notifyd xfce4-panel xfwm4 xinitrc xorg-dri-ati xorg-dri-intel xorg-dri-mga
-  xorg-dri-nouveau xorg-dri-r128 xorg-dri-radeon xorg-dri-savage xorg-dri-sis xorg-dri-swrast xorg-dri-via
-The following packages will be REPLACED:
-  gsynaptics (by gpointing-device-settings)  libgladeui3.7 (by libgladeui)
-The following NEW packages will be installed:
-  gpointing-device-settings libgladeui
-649 upgraded, 2 newly installed, 2 replaced, 0 removed and 0 not upgraded.
-Need to get 0B/431MB of archives.
-After unpacking 21.9MB of additional disk space will be used.
+  LibreOffice-still LibreOffice-still-common LibreOffice-still-extensions LibreOffice-still-gtk3 LibreOffice-still-integrated LibreOffice-still-kde5 LibreOffice-still-langpack-kk
+  LibreOffice-still-langpack-ru LibreOffice-still-langpack-uk LibreOffice-still-mimetypes LibreOffice-still-qt5 NetworkManager NetworkManager-adsl NetworkManager-bluetooth
+  NetworkManager-daemon NetworkManager-ppp NetworkManager-team NetworkManager-wifi NetworkManager-wwan alterator-auth alterator-roles-common chromium clamav clamav-freshclam freeipa-client
+  freeipa-client-common freeipa-common icon-theme-Papirus icon-theme-Papirus-Dark icon-theme-Papirus-Light icon-theme-ePapirus libclamav9 libneon libnm liborcus libqmmp1 libqmmpui1 pciids
+  python3-module-freeipa python3-module-ipaclient qmmp1 task-auth-ad-sssd task-auth-freeipa task-auth-ldap-sssd
+44 upgraded, 0 newly installed, 0 removed and 0 not upgraded.
+Need to get 292MB of archives.
+After unpacking 2687kB of additional disk space will be used.
 EOF
 
 echo -n 'Do you want to continue? [Y/n]'
@@ -89,662 +22,144 @@ read n
 
 sleep 5
 
-echo "Committing changes...
-Preparing...                 ##################################################
-kde4base-workspace-common    ##################################################
-kde4utils-common             ##################################################
-kde4base-common              ##################################################
-kde4edu-core                 ##################################################
-kde4games-common             ##################################################
-kde4games-core               ##################################################
-kde4artwork-common           ##################################################
-kde4graphics-common          ##################################################
-kde4network-common           ##################################################
-kde4network-core             ##################################################
-kde4multimedia-common        ##################################################
-kde4multimedia-core          ##################################################
-transmission-common          ##################################################
-kde4toys-common              ##################################################
-kde4admin-common             ##################################################
-udev-rules                   ##################################################
-kde4accessibility-core       ##################################################
-icon-theme-oxygen            ##################################################
-apache2-datadirs             ##################################################
-altlinux-freedesktop-menu-com##################################################
-altlinux-freedesktop-menu-sha##################################################
-altlinux-freedesktop-menu-gen##################################################
-altlinux-freedesktop-menu-kde##################################################
-apache2-cgi-bin-test-cgi     ##################################################
-apache2-cgi-bin-printenv     ##################################################
-transmission-gui-common      ##################################################
-libkipi4-common              ##################################################
-libkdcraw4-common            ##################################################
-libkexiv24-common            ##################################################
-kde4base-workspace-cursors   ##################################################
-kde4base-workspace-wallpapers##################################################
-wordnet-dict                 ##################################################
-fonts-ttf-java-1.6.0-sun     ##################################################
-simple-ccsm                  ##################################################
-apache2-icons                ##################################################
-apache2-html                 ##################################################
-rpm-macros-alterator         ##################################################
-libgtk+2-locales             ##################################################
-libgdk-pixbuf-locales        ##################################################
-libatk-locales               ##################################################
-gtk-builder-convert          ##################################################
-glibc-preinstall             ##################################################
-glibc-core                   ##################################################
-glibc-pthread                ##################################################
-grep                         ##################################################
-libgdk-pixbuf                ##################################################
-libdrm                       ##################################################
-libGL                        ##################################################
-findutils                    ##################################################
-libGLU                       ##################################################
-libatk                       ##################################################
-alterator                    ##################################################
-libgstreamer                 ##################################################
-libGConf                     ##################################################
-libevent2                    ##################################################
-libgst-plugins               ##################################################
-apache2-common               ##################################################
-git-core                     ##################################################
-glibc-locales                ##################################################
-libcups                      ##################################################
-libudev                      ##################################################
-kde4libs                     ##################################################
-kde4pimlibs                  ##################################################
-libkdegames4                 ##################################################
-libkoodf                     ##################################################
-libkdepim4                   ##################################################
-kde4pim-core                 ##################################################
-libkexiutils                 ##################################################
-libkonq4                     ##################################################
-libkworkspace4               ##################################################
-libkexidb                    ##################################################
-libkexicore                  ##################################################
-libkgroupwarebase4           ##################################################
-kde4sdk-core                 ##################################################
-libkplatokernel              ##################################################
-python-module-kde4           ##################################################
-libkscreensaver4             ##################################################
-libkastencore4               ##################################################
-libkexiguiutils              ##################################################
-libkleo4                     ##################################################
-libkephal4                   ##################################################
-liboktetacore4               ##################################################
-libplasmaclock4              ##################################################
-libkastengui4                ##################################################
-libkplatomodels              ##################################################
-libkorganizer4_core          ##################################################
-libmessagecore4              ##################################################
-libgwsoap4                   ##################################################
-libsolidcontrol4             ##################################################
-libkeduvocdocument4          ##################################################
-libkpgp4                     ##################################################
-libkcalgroupwise4            ##################################################
-libkabcgroupwise4            ##################################################
-libkorg4_stdprinting         ##################################################
-liboktetagui4                ##################################################
-liboktetakastencore4         ##################################################
-libtaskmanager4              ##################################################
-libkgroupwaredav4            ##################################################
-libknoteskolab4              ##################################################
-libkabckolab4                ##################################################
-libkcalkolab4                ##################################################
-libkcal4_resourceremote      ##################################################
-libkslox4                    ##################################################
-libkabc4_slox                ##################################################
-libkcal4_slox                ##################################################
-libkorganizer4_eventviewer   ##################################################
-libkalarm4_calendar          ##################################################
-libkorganizer4_calendar      ##################################################
-libprocesscore4              ##################################################
-libkfontinst4                ##################################################
-libkexiv24                   ##################################################
-libkggznet4                  ##################################################
-libkggzmod4                  ##################################################
-libakregatorinterfaces4      ##################################################
-libplasma4_groupingcontainmen##################################################
-libplasmaweather4            ##################################################
-libplymouth                  ##################################################
-gettext                      ##################################################
-libkorganizer4_interfaces    ##################################################
-libkdchart                   ##################################################
-libkggzgames4                ##################################################
-libkfontinstui4              ##################################################
-libprocessui4                ##################################################
-libkalarm4_resources         ##################################################
-libkabc4_groupdav            ##################################################
-libkcal4_groupdav            ##################################################
-liboktetakastengui4          ##################################################
-libknodecommon4              ##################################################
-libmessagelist4              ##################################################
-libkhotkeysprivate4          ##################################################
-kde4pim-plugins              ##################################################
-libkcal4_resourceblog        ##################################################
-kde4pim-kresources           ##################################################
-libmaildir4                  ##################################################
-libakonadi4-xml              ##################################################
-libakonadi4-kcal_next        ##################################################
-libakonadi4_next             ##################################################
-libkdepim4-copy              ##################################################
-libmbox4                     ##################################################
-kde4pim-akonadi              ##################################################
-kde4-konsole                 ##################################################
-xinitrc                      ##################################################
-libkdecorations4             ##################################################
-libksgrd4                    ##################################################
-libkwineffects4              ##################################################
-libweather4_ion              ##################################################
-libplasma4_applet-system-moni##################################################
-libokularcore4               ##################################################
-libkipi4                     ##################################################
-libkdcraw4                   ##################################################
-libanalitza4                 ##################################################
-libscience4                  ##################################################
-libkdeeduui4                 ##################################################
-libkmahjongglib4             ##################################################
-libmimelib4                  ##################################################
-libksieve4                   ##################################################
-liblancelot4                 ##################################################
-libgudev                     ##################################################
-perl-Git                     ##################################################
-GConf                        ##################################################
-gstreamer                    ##################################################
-libgdk-pixbuf-xlib           ##################################################
-udev                         ##################################################
-Stopping udevd service: [ DONE ]
-
-Starting udevd service: [ DONE ]
-
-glibc-utils                  ##################################################
-java-1.6.0-sun               ##################################################
-libmarblewidget4             ##################################################
-kde4edu-marble               ##################################################
-libsolidcontrolifaces4       ##################################################
-libplasma4-geolocation-interf##################################################
-libkleopatraclientcore4      ##################################################
-libkleopatraclientgui4       ##################################################
-kde4pim-kleopatra            ##################################################
-libgdk-pixbuf-devel          ##################################################
-liblancelot4-datamodels      ##################################################
-libkmailprivate4             ##################################################
-kde4pim-kmail                ##################################################
-kde4games-kmahjongg          ##################################################
-kde4games-kshisen            ##################################################
-kde4edu-kanagram             ##################################################
-kde4edu-blinken              ##################################################
-libanalitzagui4              ##################################################
-kde4edu-kalgebra             ##################################################
-kde4base-workspace-kdm       warning: /etc/X11/kdm4/kdmrc created as /etc/X11/kdm4/kdmrc.rpmnew##################################################
-kde4pim-knotes               ##################################################
-liboktetakastencontrollers4  ##################################################
-kde4pim-kalarm               ##################################################
-kde4games-kreversi           ##################################################
-kde4games-ksquares           ##################################################
-libkorganizerprivate4        ##################################################
-kde4pim-korganizer           ##################################################
-gettext-tools                ##################################################
-libplymouth-graphics         ##################################################
-libakregatorprivate4         ##################################################
-kde4pim-akregator            ##################################################
-kde4games-kbattleship        ##################################################
-kde4pim-wizards              ##################################################
-kde4pim-ktimetracker         ##################################################
-libmessageviewer4            ##################################################
-kde4edu-parley               ##################################################
-kde4edu-khangman             ##################################################
-kde4edu-kwordquiz            ##################################################
-libkremotecontrol4           ##################################################
-kde4utils-kremotecontrol     ##################################################
-libkastencontrollers4        ##################################################
-libplasmagenericshell4       ##################################################
-kde4toys-ktux                ##################################################
-kde4games-kajongg            ##################################################
-kde4utils-print              ##################################################
-libpowerdevilcore4           ##################################################
-libkget4                     ##################################################
-kde4network-kget             ##################################################
-libdolphinprivate4           ##################################################
-libkonquerorprivate4         ##################################################
-kde4base-plasma-applets      ##################################################
-kde4pim-kmailcvt             ##################################################
-kde4pim-ksendemail           ##################################################
-kde4pim-blogilo              ##################################################
-libkontactprivate4           ##################################################
-kde4pim-kontact              ##################################################
-libkaddressbookprivate4      ##################################################
-kde4pim-kaddressbook         ##################################################
-libkolfprivate4              ##################################################
-kde4games-kolf               ##################################################
-kde4games-ktron              ##################################################
-kde4games-lskat              ##################################################
-kde4games-kubrick            ##################################################
-kde4games-kbounce            ##################################################
-kde4games-bomber             ##################################################
-kde4games-katomic            ##################################################
-kde4games-knetwalk           ##################################################
-kde4games-kgoldrunner        ##################################################
-kde4games-ktuberling         ##################################################
-kde4games-kdiamond           ##################################################
-kde4games-killbots           ##################################################
-kde4games-kiriki             ##################################################
-kde4games-kigo               ##################################################
-kde4games-kjumpingcube       ##################################################
-kde4games-granatier          ##################################################
-kde4games-bovo               ##################################################
-kde4games-kmines             ##################################################
-kde4games-kblocks            ##################################################
-kde4games-kapman             ##################################################
-kde4games-ksame              ##################################################
-kde4games-konquest           ##################################################
-kde4games-ksudoku            ##################################################
-kde4games-kblackbox          ##################################################
-kde4games-kspaceduel         ##################################################
-kde4games-kollision          ##################################################
-kde4games-kbreakout          ##################################################
-kde4games-klines             ##################################################
-kde4games-kfourinline        ##################################################
-libkopete4                   ##################################################
-kde4pim-kjots                ##################################################
-kde4utils-kgpg               ##################################################
-libmolletnetwork4            ##################################################
-libnepomuksync4              ##################################################
-libkwalletbackend4           ##################################################
-libkonqsidebarplugin4        ##################################################
-kde4base-nsplugins           ##################################################
-libkbookmarkmodel4_private   ##################################################
-kde4libs-devel               ##################################################
-kde4accessibility-kmousetool ##################################################
-kde4accessibility-kmouth     ##################################################
-kde4accessibility-kmag       ##################################################
-libkttsd4                    ##################################################
-kde4accessibility-jovie      ##################################################
-kde4admin-ksystemlog         ##################################################
-kde4admin-kcron              ##################################################
-libksignalplotter4           ##################################################
-liblsofui4                   ##################################################
-libsystemsettingsview4       ##################################################
-liboxygenstyle4              ##################################################
-libksane4                    ##################################################
-kde4graphics-core            ##################################################
-kde4graphics-kgamma          ##################################################
-kde4graphics-kamera          ##################################################
-kde4graphics-kcolorchooser   ##################################################
-kde4graphics-kruler          ##################################################
-kde4graphics-ksnapshot       ##################################################
-libgwenview4                 ##################################################
-kde4graphics-gwenview        ##################################################
-libkolourpaint4              ##################################################
-kde4graphics-kolourpaint     ##################################################
-kde4edu-klettres             ##################################################
-kde4edu-kig                  ##################################################
-libcantor4_config            ##################################################
-librocslib4                  ##################################################
-kde4edu-rocs                 ##################################################
-libcompoundviewer4           ##################################################
-kde4edu-kalzium              ##################################################
-libkiten4                    ##################################################
-kde4edu-kiten                ##################################################
-libcantorlibs4               ##################################################
-kde4edu-step                 ##################################################
-kde4edu-kmplot               ##################################################
-kde4edu-kgeography           ##################################################
-kde4edu-kturtle              ##################################################
-kde4edu-kbruch               ##################################################
-kde4edu-ktouch               ##################################################
-kde4edu-kstars               ##################################################
-libkcardgame4                ##################################################
-kde4games-kpat               ##################################################
-libpala4                     ##################################################
-kde4games-palapeli           ##################################################
-kde4multimedia-videothumbnail##################################################
-libkcompactdisc4             ##################################################
-libkcddb4                    ##################################################
-libaudiocdplugins4           ##################################################
-kde4multimedia-audiocd       ##################################################
-kde4multimedia-kscd          ##################################################
-kde4multimedia-dragonplayer  ##################################################
-kde4multimedia-kmix          ##################################################
-kde4multimedia-juk           ##################################################
-libkrdccore4                 ##################################################
-kde4network-krdc             ##################################################
-kde4network-filesharing      ##################################################
-kde4network-kppp             ##################################################
-kde4network-kdnssd           ##################################################
-libkimpanelruntime4          ##################################################
-libplasmacomicprovidercore4  ##################################################
-librtm4                      ##################################################
-libkateinterfaces4           ##################################################
-libktexteditor4_codesnippets_##################################################
-kde4toys-kteatime            ##################################################
-kde4toys-amor                ##################################################
-kde4utils-kwallet            ##################################################
-kde4utils-kcharselect        ##################################################
-kde4utils-ktimer             ##################################################
-kde4utils-sweeper            ##################################################
-libsuperkaramba4             ##################################################
-kde4utils-superkaramba       ##################################################
-kde4utils-kfloppy            ##################################################
-libkerfuffle4                ##################################################
-kde4utils-ark                ##################################################
-kde4utils-kdf                ##################################################
-kde4utils-kcalc              ##################################################
-kde4utils-filelight          ##################################################
-libkowmf                     ##################################################
-libkowv2                     ##################################################
-cups                         ##################################################
-Stopping CUPS service: [ DONE ]
-
-Starting CUPS service: [ DONE ]
-
-apache2-httpd-worker         ##################################################
-apache2-base                 ###
-warning: /etc/rc.d/init.d/httpd2 saved as /etc/rc.d/init.d/httpd2.rpmsave
-###############################################
-transmission-remote          ##################################################
-transmission-daemon          ##################################################
-transmission-cli             ##################################################
-transmission-qt              ##################################################
-alterator-browser-qt         ##################################################
-alterator-lookout            ##################################################
-libatk-devel                 ##################################################
-xorg-dri-radeon              ##################################################
-xorg-dri-r128                ##################################################
-xorg-dri-swrast              ##################################################
-glxinfo                      ##################################################
-libdrm-devel                 ##################################################
-libGL-devel                  ##################################################
-gtk-update-icon-cache        ##################################################
-libgtk+2                     ##################################################
-libxfce4panel                ##################################################
-libxfsm                      ##################################################
-libgtk+2-devel               ##################################################
-libxfce4panel-devel          ##################################################
-xfce4-session                ##################################################
-libgladeui                   ##################################################
-libThunar                    ##################################################
-glibc-gconv-modules          ##################################################
-iconv                        ##################################################
-glibc-timezones              ##################################################
-glibc-nss                    ##################################################
-libevms                      ##################################################
-guile-evms                   ##################################################
-libiris4_ksirk               ##################################################
-kde4games-ksirk              ##################################################
-libgadu                      ##################################################
-qt-creator                   ##################################################
-libass                       ##################################################
-libkwinnvidiahack4           ##################################################
-libkrfbprivate4              ##################################################
-kde4network-krfb             ##################################################
-libplasmapotdprovidercore4   ##################################################
-libkompareinterface4         ##################################################
-libwordnet                   ##################################################
-wordnet                      ##################################################
-libwavpack                   ##################################################
-vixie-cron                   ##################################################
-Stopping crond service: [ DONE ]
-
-Starting crond service: [ DONE ]
-
-m4                           ##################################################
-lsb-core                     ##################################################
-lsb-cxx                      ##################################################
-lsb-desktop                  ##################################################
-lsb-languages                ##################################################
-lsb-printing                 ##################################################
-rp-pppoe-base                ##################################################
-rp-pppoe-client              ##################################################
-wavpack                      ##################################################
-kde4sdk-kompare              ##################################################
-gst-plugins-bad              ##################################################
-qt-creator-doc               ##################################################
-alterator-vm                 ##################################################
-glibc-devel                  ##################################################
-Thunar                       ##################################################
-glade3                       ##################################################
-xfce4-session-engines        ##################################################
-libxfce4panel-devel-doc      ##################################################
-xfce4-session-devel          ##################################################
-xfce4-panel                  ##################################################
-libgail                      ##################################################
-mozilla-plugin-adobe-flash   ##################################################
-thunar-volman-plugin         ##################################################
-xfce-utils                   warning: /etc/xdg/xfce4/xinitrc created as /etc/xdg/xfce4/xinitrc.rpmnew##################################################
-xfce4-notifyd                ##################################################
-xfwm4                        ##################################################
-NetworkManager-gnome         ##################################################
-gpointing-device-settings    ##################################################
-libGLU-devel                 ##################################################
-tigervnc                     ##################################################
-alterator-pkg                ##################################################
-kde4sdk-kate                 ##################################################
-kde4pim-devel                ##################################################
-kde4sdk-okteta               ##################################################
-plymouth-plugin-script       ##################################################
-mozilla-plugin-java-1.6.0-sun##################################################
-java-1.6.0-sun-devel         ##################################################
-udev-extras                  ##################################################
-gst-plugins-base             ##################################################
-GConf-sanity-check           ##################################################
-git-svn                      ##################################################
-git-cvs                      ##################################################
-installer-common-stage2      ##################################################
-kde4pim-knode                ##################################################
-kde4sdk-scripts              ##################################################
-kde4sdk-umbrello             ##################################################
-kde4sdk-kuiviewer            ##################################################
-kde4sdk-kmtrace              ##################################################
-kde4sdk-kapptemplate         ##################################################
-kde4sdk-kcachegrind          ##################################################
-kde4artwork-styles-phase-widg##################################################
-kde4sdk-strigi-analyzer      ##################################################
-kde4sdk-cervisia             ##################################################
-libudev-devel                ##################################################
-gitk                         ##################################################
-git-gui                      ##################################################
-apache2-httpd-prefork        ##################################################
-opera                        ##################################################
-gstreamer-devel              ##################################################
-alterator-net-eth            ##################################################
-find-static                  ##################################################
-xorg-dri-intel               ##################################################
-xorg-dri-mga                 ##################################################
-xorg-dri-via                 ##################################################
-glxgears                     ##################################################
-xorg-dri-nouveau             ##################################################
-xorg-dri-savage              ##################################################
-xorg-dri-sis                 ##################################################
-gdb                          ##################################################
-kernel-headers-modules-std-de##################################################
-ldap-user-tools              ##################################################
-nscd                         ##################################################
-libOSMesa                    ##################################################
-libclamav                    ##################################################
-xen-libs                     ##################################################
-libsatlib4                   ##################################################
-kde4sdk-po2xml               ##################################################
-libcompizconfig              ##################################################
-libsigc++2                   ##################################################
-stmpclean                    ##################################################
-strace                       ##################################################
-syslinux                     ##################################################
-altlinux-freedesktop-menu-gno##################################################
-altlinux-freedesktop-menu-xfc##################################################
-altlinux-freedesktop-menu-kde##################################################
-altlinux-freedesktop-menu-lxd##################################################
-altlinux-freedesktop-menu-nes##################################################
-udev-rule-generator          ##################################################
-kde4artwork-icon-theme-nuvola##################################################
-kde4artwork-sounds           ##################################################
-kde4artwork-color-schemes    ##################################################
-kernel-headers-std-def       ##################################################
-tango-icon-theme             ##################################################
-kde4-menu-resources          ##################################################
-kde4-i18n-ru                 ##################################################
-java-sun-desktop             ##################################################
-apt-conf-branch              ##################################################
-kde4base-runtime-core        ##################################################
-kde4base-workspace-core      ##################################################
-plasma-dataengine-microblog  ##################################################
-plasma-dataengine-comic      ##################################################
-kde4graphics-okular          ##################################################
-kde4base-kdialog             ##################################################
-fusion-icon                  ##################################################
-plasma-applet-comic          ##################################################
-plasma-applet-microblog      ##################################################
-kde4artwork-xscreensaver     ##################################################
-kde4artwork-screensavers     ##################################################
-plasma-runner-browserhistory ##################################################
-plasma-applet-life           ##################################################
-plasma-wallpaper-marble      ##################################################
-plasma-applet-unitconverter  ##################################################
-plasma-runner-konsolesessions##################################################
-plasma-applet-previewer      ##################################################
-plasma-applet-kimpanel       ##################################################
-plasma-applet-calculator     ##################################################
-plasma-wallpaper-mandelbrot  ##################################################
-plasma-applet-timer          ##################################################
-plasma-containment-griddeskto##################################################
-plasma-applet-fuzzy-clock    ##################################################
-plasma-applet-knowledgebase  ##################################################
-plasma-applet-bubblemon      ##################################################
-plasma-runner-audioplayercont##################################################
-plasma-applet-leavenote      ##################################################
-plasma-runner-mediawiki      ##################################################
-plasma-applet-bookmarks      ##################################################
-plasma-applet-frame          ##################################################
-plasma-applet-pastebin       ##################################################
-plasma-runner-konquerorsessio##################################################
-plasma-applet-rssnow         ##################################################
-plasma-applet-eyes           ##################################################
-plasma-wallpaper-pattern     ##################################################
-plasma-dataengine-kdeobservat##################################################
-plasma-applet-plasmaboard    ##################################################
-plasma-applet-lancelot       ##################################################
-plasma-runner-datetime       ##################################################
-plasma-containment-groupingpa##################################################
-plasma-applet-systemloadviewe##################################################
-plasma-applet-kolourpicker   ##################################################
-plasma-runner-katesessions   ##################################################
-plasma-applet-news           ##################################################
-plasma-applet-paste          ##################################################
-plasma-applet-charselect     ##################################################
-plasma-applet-notes          ##################################################
-plasma-runner-contacts       ##################################################
-plasma-applet-qalculate      ##################################################
-plasma-applet-luna           ##################################################
-plasma-applet-binaryclock    ##################################################
-plasma-runner-charrunner     ##################################################
-plasma-containment-groupingde##################################################
-plasma-applet-showdesktop    ##################################################
-plasma-applet-incomingmsg    ##################################################
-plasma-runner-spellchecker   ##################################################
-plasma-applet-weatherstation ##################################################
-plasma-dataengine-rtm        ##################################################
-plasma-applet-rtm            ##################################################
-plasma-applet-filewatcher    ##################################################
-plasma-wallpaper-weather     ##################################################
-plasma-applet-spellcheck     ##################################################
-plasma-dataengine-potd       ##################################################
-plasma-applet-konsoleprofiles##################################################
-plasma-applet-weather        ##################################################
-plasma-applet-fifteenpuzzle  ##################################################
-plasma-runner-events         ##################################################
-plasma-applet-opendesktop    ##################################################
-plasma-dataengine-ocs        ##################################################
-plasma-applet-konqprofiles   ##################################################
-plasma-runner-kopete         ##################################################
-plasma-applet-showdashboard  ##################################################
-plasma-runner-converter      ##################################################
-plasma-applet-nowplaying     ##################################################
-plasma-wallpaper-virus       ##################################################
-plasma-applet-webslice       ##################################################
-plasma-applet-blackboard     ##################################################
-kde4admin-print              ##################################################
-kde4base-dolphin             ##################################################
-kde4base-kdepasswd           ##################################################
-kde4base-kfind               ##################################################
-kde4base-konqueror           ##################################################
-kde4base-kwrite              ##################################################
-kde4base-keditbookmarks      ##################################################
-kde4edu-cantor               ##################################################
-kde4network-kopete           ##################################################
-plymouth-scripts             ##################################################
-plymouth                     ##################################################
-python-module-fusion-icon-qt4##################################################
-kde4artwork-screensavers3d   ##################################################
-kde4artwork-xscreensaver3d   ##################################################
-python-module-fusion-icon-gtk##################################################
-kde4artwork-desktopthemes    ##################################################
-plasma-applet-bball          ##################################################
-plasma-applet-mediaplayer    ##################################################
-plasma-applet-magnifique     ##################################################
-plasma-applet-dict           ##################################################
-libkoplugin                  ##################################################
-libpigmentcms                ##################################################
-libflake8                    ##################################################
-libkotext                    ##################################################
-libkarboncommon              ##################################################
-libkformulalib               ##################################################
-libkowidgets                 ##################################################
-libkomain                    ##################################################
-libkoproperty                ##################################################
-libkspreadodf                ##################################################
-libkritaimage                ##################################################
-libkopageapp                 ##################################################
-libkspreadcommon             ##################################################
-libkexidatatable             ##################################################
-libkexiextendedwidgets       ##################################################
-libkoreport                  ##################################################
-libmsooxml                   ##################################################
-libkokross                   ##################################################
-libkplatoui                  ##################################################
-libkplatoworkfactory         ##################################################
-libkplatoprivate             ##################################################
-libkeximain                  ##################################################
-libkformdesigner             ##################################################
-libkritalibbrush             ##################################################
-libkritaui                   ##################################################
-libkarbonui                  ##################################################
-libkwordexportfilters        ##################################################
-koffice-core                 ##################################################
-koffice-karbon               ##################################################
-koffice-kformula             ##################################################
-koffice-okular-odp           ##################################################
-koffice-kspread              ##################################################
-libkritalibpaintop           ##################################################
-koffice-krita                ##################################################
-libkexiformutils             ##################################################
-libkeximigrate               ##################################################
-libkplatoworkapp             ##################################################
-koffice-kplato               ##################################################
-libkexirelationsview         ##################################################
-koffice-kexi                 ##################################################
-libkpresenterprivate         ##################################################
-koffice-kpresenter           ##################################################
-libchartshapelib             ##################################################
-koffice-kchart               ##################################################
-libkwordprivate              ##################################################
-koffice-kword                ##################################################
-libkochart                   ##################################################
-libkformulaprivate           ##################################################
-Running /usr/lib/rpm/posttrans-filetriggers
-Menu entry /usr/lib/menu/mutt skipped: obsolete format
-Unknown media type in type 'virtual/bluedevil-input'
-Unknown media type in type 'virtual/bluedevil-audio'
-Unknown media type in type 'virtual/bluedevil-sendfile'
-Unknown media type in type 'all/all'
-Unknown media type in type 'all/allfiles'
-Unknown media type in type 'uri/mms'
-Unknown media type in type 'uri/mmst'
-Unknown media type in type 'uri/mmsu'
-Unknown media type in type 'uri/pnm'
-Unknown media type in type 'uri/rtspt'
-Unknown media type in type 'uri/rtspu'
-Unknown media type in type 'interface/x-winamp-skin'
+echo "Get:1 http://mirror.yandex.ru p9/branch/x86_64/classic LibreOffice-still-kde5 7.0.6.2-alt2:p9+272753.300.11.1@1625490642 [64.0kB]
+Get:2 http://mirror.yandex.ru p9/branch/x86_64/classic LibreOffice-still-gtk3 7.0.6.2-alt2:p9+272753.300.11.1@1625490642 [495kB]
+Get:3 http://mirror.yandex.ru p9/branch/x86_64/classic libneon 0.31.2-alt1:p9+272753.44.10.1@1624629052 [81.3kB]
+Get:4 http://mirror.yandex.ru p9/branch/x86_64/classic LibreOffice-still-qt5 7.0.6.2-alt2:p9+272753.300.11.1@1625490642 [247kB]
+Get:5 http://mirror.yandex.ru p9/branch/x86_64/classic LibreOffice-still 7.0.6.2-alt2:p9+272753.300.11.1@1625490642 [13.2kB]
+Get:6 http://mirror.yandex.ru p9/branch/x86_64/classic LibreOffice-still-extensions 7.0.6.2-alt2:p9+272753.300.11.1@1625490642 [23.2MB]
+Get:7 http://mirror.yandex.ru p9/branch/x86_64/classic LibreOffice-still-langpack-uk 7.0.6.2-alt2:p9+272753.300.11.1@1625490642 [3818kB]
+Get:8 http://mirror.yandex.ru p9/branch/x86_64/classic LibreOffice-still-langpack-kk 7.0.6.2-alt2:p9+272753.300.11.1@1625490642 [588kB]
+Get:9 http://mirror.yandex.ru p9/branch/x86_64/classic LibreOffice-still-langpack-ru 7.0.6.2-alt2:p9+272753.300.11.1@1625490642 [3886kB]
+Get:10 http://mirror.yandex.ru p9/branch/x86_64/classic LibreOffice-still-integrated 7.0.6.2-alt2:p9+272753.300.11.1@1625490642 [1378kB]
+Get:11 http://mirror.yandex.ru p9/branch/x86_64/classic LibreOffice-still-common 7.0.6.2-alt2:p9+272753.300.11.1@1625490642 [139MB]
+Get:12 http://mirror.yandex.ru p9/branch/noarch/classic LibreOffice-still-mimetypes 7.0.6.2-alt2:p9+272753.300.11.1@1625490642 [30.2kB]                                                       
+Get:13 http://mirror.yandex.ru p9/branch/x86_64/classic NetworkManager 1.18.11-alt1.gite2fdbc2b7482:p9+276659.100.1.1@1625155361 [38.3kB]                                                     
+Get:14 http://mirror.yandex.ru p9/branch/x86_64/classic NetworkManager-bluetooth 1.18.11-alt1.gite2fdbc2b7482:p9+276659.100.1.1@1625155361 [67.5kB]                                           
+Get:15 http://mirror.yandex.ru p9/branch/x86_64/classic NetworkManager-wwan 1.18.11-alt1.gite2fdbc2b7482:p9+276659.100.1.1@1625155361 [70.8kB]                                                
+Get:16 http://mirror.yandex.ru p9/branch/x86_64/classic NetworkManager-team 1.18.11-alt1.gite2fdbc2b7482:p9+276659.100.1.1@1625155361 [50.5kB]                                                
+Get:17 http://mirror.yandex.ru p9/branch/x86_64/classic NetworkManager-wifi 1.18.11-alt1.gite2fdbc2b7482:p9+276659.100.1.1@1625155361 [85.7kB]                                                
+Get:18 http://mirror.yandex.ru p9/branch/x86_64/classic NetworkManager-adsl 1.18.11-alt1.gite2fdbc2b7482:p9+276659.100.1.1@1625155361 [48.3kB]                                                
+Get:19 http://mirror.yandex.ru p9/branch/x86_64/classic NetworkManager-ppp 1.18.11-alt1.gite2fdbc2b7482:p9+276659.100.1.1@1625155361 [54.9kB]                                                 
+Get:20 http://mirror.yandex.ru p9/branch/x86_64/classic NetworkManager-daemon 1.18.11-alt1.gite2fdbc2b7482:p9+276659.100.1.1@1625155361 [2492kB]                                              
+Get:21 http://mirror.yandex.ru p9/branch/x86_64/classic libnm 1.18.11-alt1.gite2fdbc2b7482:p9+276659.100.1.1@1625155361 [403kB]                                                               
+Get:22 http://mirror.yandex.ru p9/branch/x86_64/classic freeipa-client 4.8.9-alt0.M90P.3:p9+276814.100.1.1@1625240022 [127kB]                                                                 
+Get:23 http://mirror.yandex.ru p9/branch/x86_64/classic python3-module-ipaclient 4.8.9-alt0.M90P.3:p9+276814.100.1.1@1625240022 [511kB]                                                       
+Get:24 http://mirror.yandex.ru p9/branch/x86_64/classic python3-module-freeipa 4.8.9-alt0.M90P.3:p9+276814.100.1.1@1625240022 [595kB]                                                         
+Get:25 http://mirror.yandex.ru p9/branch/x86_64/classic freeipa-common 4.8.9-alt0.M90P.3:p9+276814.100.1.1@1625240022 [550kB]                                                                 
+Get:26 http://mirror.yandex.ru p9/branch/x86_64/classic freeipa-client-common 4.8.9-alt0.M90P.3:p9+276814.100.1.1@1625240022 [44.8kB]                                                         
+Get:27 http://mirror.yandex.ru p9/branch/x86_64/classic task-auth-freeipa 0.43.9-alt4:p9+277066.100.1.1@1625392462 [17.3kB]                                                                   
+Get:28 http://mirror.yandex.ru p9/branch/x86_64/classic task-auth-ldap-sssd 0.43.9-alt4:p9+277066.100.1.1@1625392462 [17.4kB]                                                                 
+Get:29 http://mirror.yandex.ru p9/branch/x86_64/classic task-auth-ad-sssd 0.43.9-alt4:p9+277066.100.1.1@1625392462 [17.5kB]                                                                   
+Get:30 http://mirror.yandex.ru p9/branch/x86_64/classic alterator-roles-common 0.43.9-alt4:p9+277066.100.1.1@1625392462 [18.8kB]                                                              
+Get:31 http://mirror.yandex.ru p9/branch/x86_64/classic alterator-auth 0.43.9-alt4:p9+277066.100.1.1@1625392462 [38.4kB]                                                                      
+Get:32 http://mirror.yandex.ru p9/branch/x86_64/classic chromium 91.0.4472.114-alt0.p9.1:p9+276131.100.2.1@1625145599 [82.0MB]                                                                
+Get:33 http://mirror.yandex.ru p9/branch/noarch/classic icon-theme-Papirus 20210701-alt1:p9+276718.100.1.1@1625207100 [24.1MB]                                                                
+Get:34 http://mirror.yandex.ru p9/branch/noarch/classic icon-theme-ePapirus 20210701-alt1:p9+276718.100.1.1@1625207100 [1301kB]                                                               
+Get:35 http://mirror.yandex.ru p9/branch/noarch/classic icon-theme-Papirus-Dark 20210701-alt1:p9+276718.100.1.1@1625207100 [1061kB]                                                           
+Get:36 http://mirror.yandex.ru p9/branch/noarch/classic icon-theme-Papirus-Light 20210701-alt1:p9+276718.100.1.1@1625207100 [1030kB]                                                          
+Get:37 http://mirror.yandex.ru p9/branch/x86_64/classic clamav 0.103.3-alt1:p9+276753.100.1.1@1625223784 [235kB]                                                                              
+Get:38 http://mirror.yandex.ru p9/branch/x86_64/classic clamav-freshclam 0.103.3-alt1:p9+276753.100.1.1@1625223784 [66.5kB]                                                                   
+Get:39 http://mirror.yandex.ru p9/branch/x86_64/classic libclamav9 0.103.3-alt1:p9+276753.100.1.1@1625223784 [963kB]                                                                          
+Get:40 http://mirror.yandex.ru p9/branch/x86_64/classic liborcus 0.16.1-alt1:p9+272753.40.10.1@1624628960 [456kB]                                                                             
+Get:41 http://mirror.yandex.ru p9/branch/x86_64/classic qmmp1 1.4.6-alt1:p9+276772.100.2.2@1625500226 [2174kB]                                                                                
+Get:42 http://mirror.yandex.ru p9/branch/x86_64/classic libqmmpui1 1.4.6-alt1:p9+276772.100.2.2@1625500226 [347kB]                                                                            
+Get:43 http://mirror.yandex.ru p9/branch/x86_64/classic libqmmp1 1.4.6-alt1:p9+276772.100.2.2@1625500226 [134kB]                                                                              
+Get:44 http://mirror.yandex.ru p9/branch/noarch/classic pciids 20210628-alt1:p9+276271.100.1.1@1624936043 [269kB]                                                                             
+Fetched 292MB in 14s (20.1MB/s)                                                                                                                                                               
+Committing changes...
+Preparing...                                                                        #################################################################################################### [100%]
+Updating / installing...
+ 1: icon-theme-Papirus-20210701-alt1                                                #################################################################################################### [  1%]
+ 2: alterator-auth-0.43.9-alt4                                                      #################################################################################################### [  2%]
+ 3: alterator-roles-common-0.43.9-alt4                                              #################################################################################################### [  3%]
+ 4: libqmmp1-1.4.6-alt1                                                             #################################################################################################### [  5%]
+ 5: libqmmpui1-1.4.6-alt1                                                           #################################################################################################### [  6%]
+ 6: libclamav9-0.103.3-alt1                                                         #################################################################################################### [  7%]
+ 7: clamav-freshclam-0.103.3-alt1                                                   #################################################################################################### [  8%]
+ 8: freeipa-client-common-4.8.9-alt0.M90P.3                                         #################################################################################################### [  9%]
+ 9: freeipa-common-4.8.9-alt0.M90P.3                                                #################################################################################################### [ 10%]
+10: python3-module-freeipa-4.8.9-alt0.M90P.3                                        #################################################################################################### [ 11%]
+11: python3-module-ipaclient-4.8.9-alt0.M90P.3                                      #################################################################################################### [ 13%]
+12: freeipa-client-4.8.9-alt0.M90P.3                                                #################################################################################################### [ 14%]
+13: libnm-1.18.11-alt1.gite2fdbc2b7482                                              #################################################################################################### [ 15%]
+14: NetworkManager-daemon-1.18.11-alt1.gite2fdbc2b7482                              #################################################################################################### [ 16%]
+15: NetworkManager-wwan-1.18.11-alt1.gite2fdbc2b7482                                #################################################################################################### [ 17%]
+16: NetworkManager-bluetooth-1.18.11-alt1.gite2fdbc2b7482                           #################################################################################################### [ 18%]
+17: NetworkManager-team-1.18.11-alt1.gite2fdbc2b7482                                #################################################################################################### [ 19%]
+18: NetworkManager-wifi-1.18.11-alt1.gite2fdbc2b7482                                #################################################################################################### [ 20%]
+19: NetworkManager-ppp-1.18.11-alt1.gite2fdbc2b7482                                 #################################################################################################### [ 22%]
+20: NetworkManager-adsl-1.18.11-alt1.gite2fdbc2b7482                                #################################################################################################### [ 23%]
+21: LibreOffice-still-mimetypes-7.0.6.2-alt2                                        #################################################################################################### [ 24%]
+22: libneon-0.31.2-alt1                                                             #################################################################################################### [ 25%]
+23: LibreOffice-still-common-7.0.6.2-alt2                                           #################################################################################################### [ 26%]
+24: LibreOffice-still-integrated-7.0.6.2-alt2                                       #################################################################################################### [ 27%]
+25: LibreOffice-still-qt5-7.0.6.2-alt2                                              #################################################################################################### [ 28%]
+26: LibreOffice-still-extensions-7.0.6.2-alt2                                       #################################################################################################### [ 30%]
+27: LibreOffice-still-7.0.6.2-alt2                                                  #################################################################################################### [ 31%]
+28: LibreOffice-still-kde5-7.0.6.2-alt2                                             #################################################################################################### [ 32%]
+29: LibreOffice-still-gtk3-7.0.6.2-alt2                                             #################################################################################################### [ 33%]
+30: LibreOffice-still-langpack-uk-7.0.6.2-alt2                                      #################################################################################################### [ 34%]
+31: LibreOffice-still-langpack-kk-7.0.6.2-alt2                                      #################################################################################################### [ 35%]
+32: LibreOffice-still-langpack-ru-7.0.6.2-alt2                                      #################################################################################################### [ 36%]
+33: NetworkManager-1.18.11-alt1.gite2fdbc2b7482                                     #################################################################################################### [ 38%]
+34: task-auth-freeipa-0.43.9-alt4                                                   #################################################################################################### [ 39%]
+35: clamav-0.103.3-alt1                                                             #################################################################################################### [ 40%]
+36: qmmp1-1.4.6-alt1                                                                #################################################################################################### [ 41%]
+37: task-auth-ldap-sssd-0.43.9-alt4                                                 #################################################################################################### [ 42%]
+38: task-auth-ad-sssd-0.43.9-alt4                                                   #################################################################################################### [ 43%]
+39: icon-theme-ePapirus-20210701-alt1                                               #################################################################################################### [ 44%]
+40: icon-theme-Papirus-Dark-20210701-alt1                                           #################################################################################################### [ 45%]
+41: icon-theme-Papirus-Light-20210701-alt1                                          #################################################################################################### [ 47%]
+42: pciids-20210628-alt1                                                            #################################################################################################### [ 48%]
+43: liborcus-0.16.1-alt1                                                            #################################################################################################### [ 49%]
+44: chromium-91.0.4472.114-alt0.p9.1                                                #################################################################################################### [ 50%]
+Cleaning up / removing...
+45: NetworkManager-1.18.10-alt3                                                     #################################################################################################### [ 51%]
+46: task-auth-freeipa-0.43.9-alt2                                                   #################################################################################################### [ 52%]
+47: LibreOffice-still-7.0.6.2-alt1                                                  #################################################################################################### [ 53%]
+48: task-auth-ad-sssd-0.43.9-alt2                                                   #################################################################################################### [ 55%]
+49: task-auth-ldap-sssd-0.43.9-alt2                                                 #################################################################################################### [ 56%]
+50: LibreOffice-still-gtk3-7.0.6.2-alt1                                             #################################################################################################### [ 57%]
+51: LibreOffice-still-extensions-7.0.6.2-alt1                                       #################################################################################################### [ 58%]
+52: freeipa-client-4.8.9-alt0.M90P.2                                                #################################################################################################### [ 59%]
+53: python3-module-freeipa-4.8.9-alt0.M90P.2                                        #################################################################################################### [ 60%]
+54: python3-module-ipaclient-4.8.9-alt0.M90P.2                                      #################################################################################################### [ 61%]
+55: NetworkManager-adsl-1.18.10-alt3                                                #################################################################################################### [ 63%]
+56: NetworkManager-ppp-1.18.10-alt3                                                 #################################################################################################### [ 64%]
+57: NetworkManager-bluetooth-1.18.10-alt3                                           #################################################################################################### [ 65%]
+58: NetworkManager-wwan-1.18.10-alt3                                                #################################################################################################### [ 66%]
+59: NetworkManager-wifi-1.18.10-alt3                                                #################################################################################################### [ 67%]
+60: NetworkManager-team-1.18.10-alt3                                                #################################################################################################### [ 68%]
+61: NetworkManager-daemon-1.18.10-alt3                                              #################################################################################################### [ 69%]
+62: qmmp1-1.4.4-alt1                                                                #################################################################################################### [ 70%]
+63: libqmmpui1-1.4.4-alt1                                                           #################################################################################################### [ 72%]
+64: clamav-0.103.2-alt1                                                             #################################################################################################### [ 73%]
+65: clamav-freshclam-0.103.2-alt1                                                   #################################################################################################### [ 74%]
+66: icon-theme-Papirus-Light-20210601-alt1                                          #################################################################################################### [ 75%]
+67: icon-theme-Papirus-Dark-20210601-alt1                                           #################################################################################################### [ 76%]
+68: icon-theme-ePapirus-20210601-alt1                                               #################################################################################################### [ 77%]
+69: LibreOffice-still-langpack-ru-7.0.6.2-alt1                                      #################################################################################################### [ 78%]
+70: LibreOffice-still-langpack-kk-7.0.6.2-alt1                                      #################################################################################################### [ 80%]
+71: LibreOffice-still-langpack-uk-7.0.6.2-alt1                                      #################################################################################################### [ 81%]
+72: LibreOffice-still-kde5-7.0.6.2-alt1                                             #################################################################################################### [ 82%]
+73: LibreOffice-still-qt5-7.0.6.2-alt1                                              #################################################################################################### [ 83%]
+74: LibreOffice-still-integrated-7.0.6.2-alt1                                       #################################################################################################### [ 84%]
+75: LibreOffice-still-common-7.0.6.2-alt1                                           #################################################################################################### [ 85%]
+76: libneon-0.30.2-alt1                                                             #################################################################################################### [ 86%]
+77: liborcus-0.15.4-alt1                                                            #################################################################################################### [ 88%]
+78: icon-theme-Papirus-20210601-alt1                                                #################################################################################################### [ 89%]
+79: libclamav9-0.103.2-alt1                                                         #################################################################################################### [ 90%]
+80: libqmmp1-1.4.4-alt1                                                             #################################################################################################### [ 91%]
+81: libnm-1.18.10-alt3                                                              #################################################################################################### [ 92%]
+82: freeipa-client-common-4.8.9-alt0.M90P.2                                         #################################################################################################### [ 93%]
+83: freeipa-common-4.8.9-alt0.M90P.2                                                #################################################################################################### [ 94%]
+84: alterator-auth-0.43.9-alt2                                                      #################################################################################################### [ 95%]
+85: alterator-roles-common-0.43.9-alt2                                              #################################################################################################### [ 97%]
+86: LibreOffice-still-mimetypes-7.0.6.2-alt1                                        #################################################################################################### [ 98%]
+87: pciids-20210517-alt1                                                            #################################################################################################### [ 99%]
+88: chromium-91.0.4472.101-alt0.p9.1                                                #################################################################################################### [100%]
+Menu entry /usr/share/menu/google-chrome.menu skipped: obsolete format
 Done." | while read d
 do
 	echo "$d"
