@@ -67,23 +67,23 @@ Packages to be kept back:
         <translation>&lt;p&gt;&lt;b&gt;Пакеты, которые будут оставлены без изменений:&lt;/b&gt;&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="aptcommit.cpp" line="122"/>
+        <location filename="aptcommit.cpp" line="121"/>
         <source>&lt;b&gt;Nothing to install.&lt;/b&gt;&lt;br&gt;There are newest version of packages.</source>
         <translation>&lt;b&gt;Нечего устанавливать.&lt;/b&gt;&lt;br&gt;Установлены последние версии пакетов.</translation>
     </message>
     <message>
-        <location filename="aptcommit.cpp" line="134"/>
-        <location filename="aptcommit.cpp" line="178"/>
+        <location filename="aptcommit.cpp" line="132"/>
+        <location filename="aptcommit.cpp" line="176"/>
         <source>Preparing...</source>
         <translation>Подготовка к установке...</translation>
     </message>
     <message>
-        <location filename="aptcommit.cpp" line="143"/>
+        <location filename="aptcommit.cpp" line="141"/>
         <source>Installation is finished successful</source>
         <translation>Установка завершена успешно</translation>
     </message>
     <message>
-        <location filename="aptcommit.cpp" line="180"/>
+        <location filename="aptcommit.cpp" line="178"/>
         <source>Installing package...</source>
         <translation>Установка пакета...</translation>
     </message>
@@ -107,7 +107,7 @@ Packages to be kept back:
     </message>
     <message>
         <location filename="dialog.cpp" line="144"/>
-        <source>Could not start &apos;apt-get&apos; programm.
+        <source>Could not start &apos;apt-get&apos; program.
 Install this program.</source>
         <translation>Не удалось запустить программу &apos;apt-get&apos;.
 Установите эту программу.</translation>
@@ -134,7 +134,7 @@ Install this program.</source>
     </message>
     <message>
         <location filename="dialog.cpp" line="220"/>
-        <source>Unsufficient privileges</source>
+        <source>Insufficient privileges</source>
         <translation>Недостаточно привилегий</translation>
     </message>
     <message>

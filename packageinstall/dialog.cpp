@@ -141,7 +141,7 @@ void Dialog::processStart() {
     process->start( programm, args );
 
     if ( ! process->waitForStarted() ) {
-        QMessageBox::critical(this, tr("Error start"), tr("Could not start 'apt-get' programm.\nInstall this program.") );
+        QMessageBox::critical(this, tr("Error start"), tr("Could not start 'apt-get' program.\nInstall this program.") );
         exit( 1 );
     }
 
@@ -217,7 +217,7 @@ void Dialog::readError() {
         commit.appendError( str );
         if( ! str.isEmpty() ) {
             if( str.startsWith( "E: Unable to write to /var/cache/apt/" ) ) {
-                QMessageBox::critical( this, tr("Unsufficient privileges"),
+                QMessageBox::critical( this, tr("Insufficient privileges"),
                         tr("Program should be run with superuser privileges.\nCheck your rights and program installation.") );
                 close();
             }
