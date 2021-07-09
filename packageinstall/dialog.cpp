@@ -268,7 +268,7 @@ void Dialog::cancelPressed() {
         QMessageBox msgBox( this );
         msgBox.setWindowTitle( tr("Quit") );
         msgBox.setIcon( QMessageBox::Question );
-        msgBox.setText("Do you want to cancel installation??");
+        msgBox.setText( tr("Do you want to cancel installation??") );
         msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::Cancel);
         msgBox.setDefaultButton(QMessageBox::Yes);
         int ret = msgBox.exec();
