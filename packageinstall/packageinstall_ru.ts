@@ -73,17 +73,22 @@ Packages to be kept back:
     </message>
     <message>
         <location filename="aptcommit.cpp" line="132"/>
-        <location filename="aptcommit.cpp" line="176"/>
+        <location filename="aptcommit.cpp" line="195"/>
         <source>Preparing...</source>
         <translation>Подготовка к установке...</translation>
     </message>
     <message>
-        <location filename="aptcommit.cpp" line="141"/>
+        <location filename="aptcommit.cpp" line="142"/>
+        <source>Cleaning up / removing packages</source>
+        <translation>Удаление старых версий пакетов</translation>
+    </message>
+    <message>
+        <location filename="aptcommit.cpp" line="149"/>
         <source>Installation is finished successful</source>
         <translation>Установка завершена успешно</translation>
     </message>
     <message>
-        <location filename="aptcommit.cpp" line="178"/>
+        <location filename="aptcommit.cpp" line="197"/>
         <source>Installing package...</source>
         <translation>Установка пакета...</translation>
     </message>
@@ -91,100 +96,119 @@ Packages to be kept back:
 <context>
     <name>Dialog</name>
     <message>
-        <location filename="dialog.cpp" line="50"/>
+        <location filename="dialog.cpp" line="48"/>
         <source>&lt;b&gt;Updating system&lt;/b&gt;&lt;br&gt;Please, wait...</source>
         <translation>&lt;b&gt;Обновление системы&lt;/b&gt;&lt;br&gt;Пожалуйста, подождите...</translation>
     </message>
     <message>
-        <location filename="dialog.cpp" line="51"/>
+        <location filename="dialog.cpp" line="49"/>
         <source>&lt;b&gt;Installing packages&lt;/b&gt;&lt;br&gt;Please, wait...</source>
         <translation>&lt;b&gt;Установка пакетов&lt;/b&gt;&lt;br&gt;Пожалуйста, подождите...</translation>
     </message>
     <message>
-        <location filename="dialog.cpp" line="144"/>
+        <location filename="dialog.cpp" line="138"/>
         <source>Error start</source>
         <translation>Ошибка запуска</translation>
     </message>
     <message>
-        <location filename="dialog.cpp" line="144"/>
+        <location filename="dialog.cpp" line="138"/>
         <source>Could not start &apos;apt-get&apos; program.
 Install this program.</source>
         <translation>Не удалось запустить программу &apos;apt-get&apos;.
 Установите эту программу.</translation>
     </message>
     <message>
-        <location filename="dialog.cpp" line="149"/>
         <source>Check package requirements...</source>
-        <translation>Проверка зависимостей пакетов...</translation>
+        <translation type="vanished">Проверка зависимостей пакетов...</translation>
     </message>
     <message>
-        <location filename="dialog.cpp" line="162"/>
+        <location filename="dialog.cpp" line="143"/>
+        <source>Preparing for install: check for updates and download packages...</source>
+        <translation>Подготовка к установке: проверка обновлений и загрузка пакетов...</translation>
+    </message>
+    <message>
+        <location filename="dialog.cpp" line="156"/>
         <source>Installation is finished successful</source>
         <translation>Установка завершена успешно</translation>
     </message>
     <message>
-        <location filename="dialog.cpp" line="165"/>
+        <location filename="dialog.cpp" line="159"/>
         <source>&lt;span style=&quot;color:red;&quot;&gt;An error occurred during installation&lt;/span&gt;</source>
         <translation>&lt;span style=&quot;color:red;&quot;&gt;Возникла ошибка при установке&lt;/span&gt;</translation>
     </message>
     <message>
-        <location filename="dialog.cpp" line="168"/>
+        <location filename="dialog.cpp" line="163"/>
+        <source>&lt;b&gt;Updating system&lt;/b&gt;&lt;br&gt;&amp;nbsp;</source>
+        <translation>&lt;b&gt;Обновление системы&lt;/b&gt;&lt;br&gt;&amp;nbsp;</translation>
+    </message>
+    <message>
+        <location filename="dialog.cpp" line="164"/>
+        <source>&lt;b&gt;Installing packages&lt;/b&gt;&lt;br&gt;&amp;nbsp;</source>
+        <translation>&lt;b&gt;Установка пакетов&lt;/b&gt;&lt;br&gt;&amp;nbsp;</translation>
+    </message>
+    <message>
+        <location filename="dialog.cpp" line="165"/>
         <source>&amp;Exit</source>
         <translation>В&amp;ыход</translation>
     </message>
     <message>
-        <location filename="dialog.cpp" line="220"/>
+        <location filename="dialog.cpp" line="217"/>
         <source>Insufficient privileges</source>
         <translation>Недостаточно привилегий</translation>
     </message>
     <message>
-        <location filename="dialog.cpp" line="221"/>
+        <location filename="dialog.cpp" line="218"/>
         <source>Program should be run with superuser privileges.
 Check your rights and program installation.</source>
         <translation>Программа должна быть запущена с привилегиями
 суперпользователя (root). Проверьте права доступа.</translation>
     </message>
     <message>
-        <location filename="dialog.cpp" line="225"/>
+        <location filename="dialog.cpp" line="222"/>
         <source>Installation error</source>
         <translation>Ошибка установки</translation>
     </message>
     <message>
-        <location filename="dialog.cpp" line="226"/>
+        <location filename="dialog.cpp" line="223"/>
         <source>Installation is failed.
 Check output log.</source>
         <translation>Во время установки произошла ошибка.
 Работа приложения будет завершена.</translation>
     </message>
     <message>
-        <location filename="dialog.cpp" line="230"/>
+        <location filename="dialog.cpp" line="227"/>
         <source>Wrong package name</source>
         <translation>Неверное имя пакета</translation>
     </message>
     <message>
-        <location filename="dialog.cpp" line="231"/>
+        <location filename="dialog.cpp" line="228"/>
         <source>Couldn&apos;t find package
 &apos;%1&apos;</source>
         <translation>Невозможно найти пакет
 «%1»</translation>
     </message>
     <message>
-        <location filename="dialog.cpp" line="243"/>
-        <location filename="dialog.cpp" line="251"/>
+        <location filename="dialog.cpp" line="240"/>
+        <location filename="dialog.cpp" line="248"/>
         <source>Hide &amp;details &lt;&lt;</source>
         <translation>Скрыть &amp;подробности &gt;&gt;</translation>
     </message>
     <message>
-        <location filename="dialog.cpp" line="246"/>
-        <location filename="dialog.cpp" line="255"/>
-        <location filename="dialog.cpp" line="317"/>
+        <location filename="dialog.cpp" line="243"/>
+        <location filename="dialog.cpp" line="252"/>
+        <location filename="dialog.cpp" line="314"/>
         <source>Show &amp;details &gt;&gt;</source>
         <translation>Показать &amp;подробности &gt;&gt;</translation>
     </message>
     <message>
-        <location filename="dialog.cpp" line="275"/>
+        <location filename="dialog.cpp" line="272"/>
         <source>Quit</source>
         <translation>Выход</translation>
+    </message>
+    <message>
+        <location filename="dialog.cpp" line="274"/>
+        <source>Do you want to cancel installation??</source>
+        <translation>Прервать установку?</translation>
     </message>
 </context>
 <context>
@@ -246,34 +270,34 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>QObject</name>
     <message>
-        <location filename="main.cpp" line="49"/>
+        <location filename="main.cpp" line="58"/>
         <source>Available options:</source>
         <translation>Доступные параметры:</translation>
     </message>
     <message>
-        <location filename="main.cpp" line="50"/>
+        <location filename="main.cpp" line="59"/>
         <source>    -h         This help</source>
         <translation>    -h         Справка по использованию программы</translation>
     </message>
     <message>
-        <location filename="main.cpp" line="51"/>
+        <location filename="main.cpp" line="60"/>
         <source>    --version  Version information</source>
         <translation>    --version  Информация о версии</translation>
     </message>
     <message>
-        <location filename="main.cpp" line="57"/>
+        <location filename="main.cpp" line="66"/>
         <source>%1 %2</source>
         <comment>%1 is application name, %2 is application version</comment>
         <translation>%1 %2</translation>
     </message>
     <message>
-        <location filename="main.cpp" line="45"/>
+        <location filename="main.cpp" line="54"/>
         <source>%1 %2. Program for install packages from APT repositories</source>
         <comment>%1 is application name, %2 is application version</comment>
         <translation>%1 %2. Программа для установки пакетов из репозиториев APT</translation>
     </message>
     <message>
-        <location filename="main.cpp" line="47"/>
+        <location filename="main.cpp" line="56"/>
         <source>Usage: %1 [option] package...</source>
         <comment>%1 is application name</comment>
         <translation>Использование: %1 [параметр] пакет...</translation>
