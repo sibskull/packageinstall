@@ -29,9 +29,18 @@ int main( int argc, char *argv[] ) {
     QApplication app( argc, argv );
 
     // Load localization
-    QTranslator translator;
     QString locale = QLocale::system().name();
-    translator.load( QString( "qtbase_" ).append( locale.split( "_" ).at( 0 ) ), QLibraryInfo::location( QLibraryInfo::TranslationsPath ) );
+
+    // Load system localization
+    QTranslator systemTranslator;
+    systemTranslator.load( QString( "qt_" ).append( locale.split( "_" ).at( 0 ) ), QLibraryInfo::location( QLibraryInfo::TranslationsPath ) );
+    app.installTranslator( &systemTranslator );
+    QTranslator baseTranslator;
+    baseTranslator.load( QString( "qtbase_" ).append( locale.split( "_" ).at( 0 ) ), QLibraryInfo::location( QLibraryInfo::TranslationsPath ) );
+    app.installTranslator( &baseTranslator );
+
+    // Application localization
+    QTranslator translator;
     translator.load( QString( DATADIR ) + QString( APPNAME ) + QString ( "_" ) + locale );
     app.installTranslator( &translator );
 
