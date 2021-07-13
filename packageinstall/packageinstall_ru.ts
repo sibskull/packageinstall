@@ -37,28 +37,19 @@
     <message>
         <location filename="aptcommit.cpp" line="100"/>
         <source>&lt;p&gt;&lt;b&gt;Packages to be installed:&lt;/b&gt;&lt;/p&gt;</source>
-        <oldsource>
-Packages to be upgraded:
-</oldsource>
-        <translation>&lt;p&gt;&lt;b&gt;Пакеты, которые будут обновлены:&lt;/b&gt;&lt;/p&gt;
+        <translation>&lt;p&gt;&lt;b&gt;Пакеты, которые будут установлены:&lt;/b&gt;&lt;/p&gt;
 </translation>
     </message>
     <message>
         <location filename="aptcommit.cpp" line="104"/>
         <source>&lt;p&gt;&lt;b&gt;Packages to be upgraded:&lt;/b&gt;&lt;/p&gt;</source>
-        <oldsource>
-Packages to be removed:
-</oldsource>
-        <translation>&lt;p&gt;&lt;b&gt;Пакеты, которые будут удалены:&lt;/b&gt;&lt;/p&gt;
+        <translation>&lt;p&gt;&lt;b&gt;Пакеты, которые будут обновлены:&lt;/b&gt;&lt;/p&gt;
 </translation>
     </message>
     <message>
         <location filename="aptcommit.cpp" line="108"/>
         <source>&lt;p&gt;&lt;b&gt;Packages to be removed:&lt;/b&gt;&lt;/p&gt;</source>
-        <oldsource>
-Packages to be kept back:
-</oldsource>
-        <translation>&lt;p&gt;&lt;b&gt;Пакеты, которые будут оставлены:&lt;/b&gt;&lt;/p&gt;
+        <translation>&lt;p&gt;&lt;b&gt;Пакеты, которые будут удалены:&lt;/b&gt;&lt;/p&gt;
 </translation>
     </message>
     <message>
