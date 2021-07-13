@@ -47,6 +47,7 @@ int AptCommit::appendString( QString str ) {
     if( str == QString( "The following packages will be upgraded" )) { stage = Upgraded; return 0; }
     if( str == QString( "The following NEW packages will be installed:" )) { stage = Installed; return 0; }
     if( str == QString( "The following extra packages will be installed:" )) { stage = Installed; return 0; }
+    if( str == QString( "The following packages will be REPLACED:" )) { stage = Unknown; return 0; }
     if( str == QString( "The following packages will be REMOVED:" )) { stage = Removed; return 0; }
     if( str == QString( "The following packages have been kept back" )) { stage = Kept; return 0; }
 
@@ -87,6 +88,9 @@ int AptCommit::appendString( QString str ) {
 
         QString statistics = tr( "<p><b>Processed packages:</b></p>\n" );
         // Show only non-empty categories one per line
+	//std::cout << "upgraded: " << qPrintable(upgraded.join(' ')) << std::endl;
+	//std::cout << "installed: " << qPrintable(installed.join(' ')) << std::endl;
+	//std::cout << "removed: " << qPrintable(removed.join(' ')) << std::endl;
         if( upgraded.count() > 0 )  statistics.append( tr( "&#9658; upgraded: %1<br>" ).arg( upgraded.count() ) );
         if( installed.count() > 0 ) statistics.append( tr( "&#9658; installed: %1<br>" ).arg( installed.count() ) );
         if( removed.count() > 0 )   statistics.append( tr( "&#9658; removed: %1<br>" ).arg( removed.count() ) );
@@ -96,13 +100,13 @@ int AptCommit::appendString( QString str ) {
 
         QString details("");
 
-        if( installed.count() > 0 ) {
-            details += tr("<p><b>Packages to be installed:</b></p>");
-            details += installed.join( " " );
-        }
         if( upgraded.count() > 0 ) {
             details += tr("<p><b>Packages to be upgraded:</b></p>");
             details += upgraded.join( " " );
+        }
+        if( installed.count() > 0 ) {
+            details += tr("<p><b>Packages to be installed:</b></p>");
+            details += installed.join( " " );
         }
         if( removed.count() > 0 ) {
             details += tr("<p><b>Packages to be removed:</b></p>");
