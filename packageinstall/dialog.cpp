@@ -112,8 +112,10 @@ void Dialog::processStart() {
     }
 
     // Update apt cache before installation
-    QProcess *updateCache = new QProcess( this );
-    updateCache->start( "apt-get", { "update" } );
+    processUpdate = new QProcess( this );
+    connect( processUpdate, SIGNAL(readyReadStandardOutput()), this, SLOT(readUpdateOutput()) );
+    connect( processUpdate, SIGNAL(readyReadStandardError()), this, SLOT(readUpdateError()) );
+    processUpdate->start( "apt-get", { "update" } );
 
     // Run installation
     QStringList args;
@@ -198,6 +200,22 @@ void Dialog::readOutput() {
     tail = str;
 }
 
+// Read from update process
+void Dialog::readUpdateOutput() {
+
+    QByteArray buf;
+    QString str;
+
+    processUpdate->setReadChannel( QProcess::StandardOutput );
+
+    while( processUpdate->canReadLine() ) {
+        buf = processUpdate->readLine();
+        str = QString( buf.data() );
+        std::cout << qPrintable( str );
+        if( d )
+            d->log->append( str );
+    }
+}
 
 // Read from process errors
 void Dialog::readError() {
@@ -232,6 +250,22 @@ void Dialog::readError() {
     }
 }
 
+// Read from process errors
+void Dialog::readUpdateError() {
+
+    QByteArray buf;
+    QString str;
+
+    processUpdate->setReadChannel( QProcess::StandardError );
+
+    while( processUpdate->canReadLine() ) {
+        buf = processUpdate->readLine();
+        str = QString( buf.data() );
+        std::cerr << qPrintable( str );
+        if( d )
+            d->log->append( str );
+    }
+}
 
 // Button actions
 void Dialog::detailPressed() {

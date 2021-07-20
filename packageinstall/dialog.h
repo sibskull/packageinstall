@@ -45,6 +45,7 @@ public:
     void iSetStatus( QString stage, int percent, QString fileName );
 	void iSetStatistics( QString text, QString details, int total );
     QProcess *process;
+    QProcess *processUpdate;
 
 private:
     AptCommit    commit;
@@ -62,6 +63,8 @@ private:
 
 private slots:
     void processStart();
+    void readUpdateOutput();
+    void readUpdateError();
     void readOutput();
     void readError();
     void windowClose();
