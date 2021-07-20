@@ -10,7 +10,7 @@ REQUIRES
 
 CONTACTS
 --------
-Web: http://www.altlinux.org/PackageInstall
+Web: http://www.altlinux.org/Install
 Sources: http://git.altlinux.org/people/cas/packages/?p=packageinstall.git;a=summary
 
 LICENSE
@@ -22,4 +22,4 @@ the Free Software Foundation; either version 3 of the License, or
 
 AUTHORS
 -------
-Copyright (c) 2009,2021 by Andrey Cherepanov <cas@altlinux.org>
+Copyright (c) 2009-2021 by Andrey Cherepanov <cas@altlinux.org>
