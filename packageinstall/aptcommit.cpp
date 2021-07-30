@@ -135,8 +135,9 @@ int AptCommit::appendString( QString str ) {
         stage = Preparing;
         setStatus( tr("Preparing..."), 0, QString( "" ) );
         count = str.count( "#" );
-        // +2 because first line during prepare contains 100 symbols and we need to show gap to 100% for postinstall actions and triggers
-        total = ( totalPackages + 2 ) * 100;
+        numHashes = count;
+        // +2 because first line during prepare contains numHashes symbols and we need to show gap to 100% for postinstall actions and triggers
+        total = ( totalPackages + 2 ) * numHashes;
         currentFile = QString( "" );
         return 0;
     }
@@ -195,7 +196,7 @@ int AptCommit::appendString( QString str ) {
 
     // Progress
     if( stage == Preparing ) {
-        if( count < 100 ) { // Preparing
+        if( count < 1 ) { // Preparing
             setStatus( tr("Preparing..."), (int)( ( 100 * count ) / total ), currentFile );
         } else { // Post actions
             setStatus( tr("Installing package..."), (int)( ( 100 * count ) / total ), currentFile );

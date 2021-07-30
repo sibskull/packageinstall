@@ -51,6 +51,7 @@ private:
     int total;
     QString currentFile;
     int totalPackages;
+    int numHashes=50;
 };
 
 #endif // APTCOMMIT_H
